@@ -1,0 +1,2424 @@
+[
+  {
+    "label": "mobile390",
+    "pages": [
+      {
+        "pageName": "mobile390-home",
+        "bodyPage": "home",
+        "title": "ألعاب الهلال المختلفة",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 867,
+          "scrollScreens": 1.03
+        },
+        "activePageHeight": 852,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 9,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "id": "homeAdminBtn",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "A",
+            "id": "homeWhatsapp",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "id": "homePolicyBtn",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "id": "homeLangBtn",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "id": "homeAboutBtn",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "",
+            "width": 42,
+            "height": 42
+          }
+        ],
+        "smallTargetCount": 8,
+        "unlabeledInputs": [],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": null,
+        "activeText": "ألعاب الهلال المختلفة\n\nاختر الرياضة ثم انتقل لمسار المدرب أو اللاعب\n\nWeightlifting\nرفع الأثقال\n128 لاعب\nSwimming\nالسباحة\n64 لاعب\nKarate\nالكاراتيه\n55 لاعب\nJiu-Jitsu\nجوجيتسو\n42 لاعب\nBadminton\nريشة الطائرة\n38 لاعب\nBasketball\nكرة السلة\n62 لاعب\nVolleyball\nكرة الطائرة\n58 لاعب\nAthletics\nألعاب القوى\n57 لاعب"
+      },
+      {
+        "pageName": "mobile390-sport-login",
+        "bodyPage": "sport",
+        "title": "Weightlifting",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 844,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 208,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 3,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": null,
+        "activeText": "128 لاعب\nWeightlifting\n\nاختر المسار المناسب لرياضة رفع الأثقال\n\nدخول اللاعب\nدخول المدرب"
+      },
+      {
+        "pageName": "mobile390-coachDash",
+        "bodyPage": "coachDash",
+        "title": "لوحة التحكم",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 1843,
+          "scrollScreens": 2.18
+        },
+        "activePageHeight": 1813,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 8,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dashboardWhatsappShare",
+            "text": "مشاركة واتساب",
+            "width": 133,
+            "height": 38
+          }
+        ],
+        "smallTargetCount": 2,
+        "unlabeledInputs": [],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 772,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Dashboard\nرفع الأثقال\nلوحة التحكم\n\nملخص سريع وتحكم أساسي للمدرب\n\nملخص اليوم\n\n٢٦ ذو الحجة ١٤٤٧ هـ\n١٢ يونيو ٢٠٢٦\n\nإجمالي اللاعبين\n63\nلاعب\nالحاضرون اليوم\n0\nحضور مسجل\nنسبة الحضور\n0%\nمن إجمالي اللاعبين\nالغائبون اليوم\n0\nلم يحضروا\nالتقرير الشهري\n\nاختر الشهر والسنة\n\nمشاركة واتساب\nيناير\nفبراير\nمارس\nأبريل\nمايو\nيونيو\nيوليو\nأغسطس\nسبتمبر\nأكتوبر\nنوفمبر\nديسمبر\n2026\n2025\n2024\n2023\n2022\n2021\nالحضور\n7\nالتأخير\n0\nبعذر\n0\nنسبة الحضور\n2.2%\nأفضل الحضور هذا الشهر\n5 لاعبين\n1.\nإبراهيم نصر الدين شيخ أنور\nفئة الكبار\nحضور 2 يوم\n40%\n2.\nحاتم محمد حسن المروعي\nفئة الكبار\nحضور 2 يوم\n40%\n3.\nمحمد راشد عبيد السبيعي\nفئة الكبار\nحضور 2 يوم\n40%\n4.\nمساعد عبدالعزيز آل عشيوان\nفئة الكبار\nحضور 1 يوم\n20%\n5.\nاحمد محمد احمد الحلاق\nفئة الناشئين\nحضور 0 يوم\n0%\nملخص الفئات هذا الشهر\nفئة الكبار\nإجمالي اللاعبين\n13\nالحضور\n7\nفئة الشباب\nإجمالي اللاعبين\n9\nالحضور\n0\nفئة الناشئين\nإجمالي اللاعبين\n17\nالحضور\n0\nفئة البراعم\nإجمالي اللاعبين\n24\nالحضور\n0\nإضافة لاعب"
+      },
+      {
+        "pageName": "mobile390-attendance",
+        "bodyPage": "attendance",
+        "title": "الحضور والغياب",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 15534,
+          "scrollScreens": 18.41
+        },
+        "activePageHeight": 15504,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 390,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد راشد عبيد السبيعي  (36 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حاتم محمد حسن المروعي (34 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "مساعد عبدالعزيز آل عشيوان (33 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "صالح هتان صالح العقيل (29 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "داحش محمد داحش كليبي (25 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "رضوان ناصر جوهر أحمد (24 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "راكان هاددي علوي ديباجي (24 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "اسامه منصورمحمدالريمي (24 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "إبراهيم نصر الدين شيخ أنور (22 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد هادي محمد الشهراني (22 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالله احمد علي فقيهي (22 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "متعب علي محمد ازيبي (20 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "ياسر عبيد عوضة الشهراني (20 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالمجيد محمد داحش كليبي (20 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "فهد واصل فهد العتيبي (20 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "زياد موسى منصور حقوي (19 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "سليمان صادق صالح تكروني (19 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد علي حسن كليبي (18 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد مبارك عبدالله الدوسري (18 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "خالد محمد صالح تكروني (18 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "ناصر محمد فهد الدوسري (17 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "طلال عبدالعزيز ناحي العنزي (17 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "أديب خالد جعيثن علي (17 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "فهد أحمد علي فقيهي (17 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "يوسف سلطان يحيى هزازي (16 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "معاذ طارق رفاعي العتيبي (15 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "أحمد محمد فهد الدوسري (15 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "خالد علي شوعي شوك (15 سنة)",
+            "width": 326,
+            "height": 24
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "مؤيد سلمان احمد الفيفي (15 سنة)",
+            "width": 326,
+            "height": 24
+          }
+        ],
+        "smallTargetCount": 57,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "search",
+            "placeholder": "ابحث باسم اللاعب أو رقم الهوية"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 772,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "تشغيل يومي\nالحضور والغياب\nالسبت\n6\nالأحد\n7\nالاثنين\n8\nالثلاثاء\n9\nالأربعاء\n10\nالخميس\n11\nالجمعة\n12\nحاضر\n0\nغائب\n63\nالنسبة\n0%\nفئة الكبار\n13 لاعب\nمحمد راشد عبيد السبيعي (36 سنة)\nالحضور: 2\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nحاتم محمد حسن المروعي (34 سنة)\nالحضور: 2\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمساعد عبدالعزيز آل عشيوان (33 سنة)\nالحضور: 1\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nصالح هتان صالح العقيل (29 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالعزيز موسى عجيم فقيهي (27 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nداحش محمد داحش كليبي (25 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nسعود بن أحمد بن علي فقيهي (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nرضوان ناصر جوهر أحمد (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nراكان هاددي علوي ديباجي (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nاسامه منصورمحمدالريمي (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nإبراهيم نصر الدين شيخ أنور (22 سنة)\nالحضور: 2\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمحمد هادي محمد الشهراني (22 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالله احمد علي فقيهي (22 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفئة الشباب\n9 لاعب\nمتعب علي محمد ازيبي (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nياسر عبيد عوضة الشهراني (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالمجيد محمد داحش كليبي (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفهد واصل فهد العتيبي (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nزياد موسى منصور حقوي (19 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nسليمان صادق صالح تكروني (19 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمحمد علي حسن كليبي (18 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمحمد مبارك عبدالله الدوسري (18 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nخالد محمد صالح تكروني (18 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفئة الناشئين\n17 لاعب\nناصر محمد فهد الدوسري (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nطلال عبدالعزيز ناحي العنزي (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nأديب خالد جعيثن علي (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفهد أحمد علي فقيهي (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nيوسف سلطان يحيى هزازي (16 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالعزيز محمد غنام العبداللطيف (16 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالاله هويدي عبدالله الدوسري (16 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nح"
+      },
+      {
+        "pageName": "mobile390-weekly",
+        "bodyPage": "weekly",
+        "title": "الجدول الأسبوعي",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 1016,
+          "scrollScreens": 1.2
+        },
+        "activePageHeight": 986,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 13,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "codeInput",
+            "placeholder": "A7-3K-L9"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 772,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "أسبوعي\nالجدول الأسبوعي\nالكود\nحفظ\n\nالأحد\nالاثنين\nالثلاثاء\nالأربعاء\nالخميس\nحفظ الجدول"
+      },
+      {
+        "pageName": "mobile390-playerDash",
+        "bodyPage": "playerDash",
+        "title": "لوحة اللاعب",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 844,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 426,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 1,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [],
+        "stickyHeader": null,
+        "bottomNav": null,
+        "activeText": "لوحة اللاعب\nرفع الأثقال\nلوحة اللاعب\nجدول التمارين الأسبوعية\nالأحد\nتجربه\nالاثنين\nتمارين المهارة - تكنيك الرفعة 45 دقيقة\nالثلاثاء\nاستشفاء وتمطيط 30 دقيقة\nالأربعاء\nاختبار الأداء - سرعة وقوة\nالخميس\nتمرين شامل حسب توجيه المدرب"
+      },
+      {
+        "pageName": "mobile390-adminDash-unauthenticated",
+        "bodyPage": "adminDash",
+        "title": "لوحة الإداري",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 1405,
+          "scrollScreens": 1.66
+        },
+        "activePageHeight": 1375,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 10,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "SELECT",
+            "id": "adminRankingSport",
+            "text": "كل الرياضاتألعاب القوىريشة الطائرةكرة السلةجوجيتسو",
+            "width": 154,
+            "height": 32
+          }
+        ],
+        "smallTargetCount": 2,
+        "unlabeledInputs": [
+          {
+            "tag": "SELECT",
+            "id": "adminTodaySport",
+            "placeholder": ""
+          },
+          {
+            "tag": "SELECT",
+            "id": "adminRankingSport",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginEmail",
+            "placeholder": "اسم المستخدم أو البريد الإلكتروني"
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginPass",
+            "placeholder": "كلمة المرور"
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 772,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Admin\nلوحة الإداري\nلوحة الإداري\n\nنظرة شاملة وسريعة على بيانات النادي والحضور\n\nإجمالي اللاعبين\n63\nلاعب مسجل\nعدد المدربين\n8\nمدرب في النظام\nعدد الرياضات\n8\nرياضة مسجلة\nحضور اليوم\n0\nحضور مسجل\nملخص الحضور اليوم\n\n١٢ يونيو ٢٠٢٦\n\nالرياضة\nكل الرياضات\nألعاب القوى\nريشة الطائرة\nكرة السلة\nجوجيتسو\nالكاراتيه\nالسباحة\nكرة الطائرة\nرفع الأثقال\nالحاضرون\n0\nالمتأخرون\n0\nالغائبون\n0\nغياب بعذر\n0\nنسبة الحضور\n0%\nأفضل 10 لاعبين حضوراً\nكل الرياضات\nألعاب القوى\nريشة الطائرة\nكرة السلة\nجوجيتسو\nالكاراتيه\nالسباحة\nكرة الطائرة\nرفع الأثقال\n1\nإبراهيم نصر الدين شيخ أنور\n2 يوم حضور\nرفع الأثقال\n40%\n2\nحاتم محمد حسن المروعي\n2 يوم حضور\nرفع الأثقال\n40%\n3\nمحمد راشد عبيد السبيعي\n2 يوم حضور\nرفع الأثقال\n40%\n4\nمساعد عبدالعزيز آل عشيوان\n1 يوم حضور\nرفع الأثقال\n20%\n5\nاحمد محمد احمد الحلاق\n0 يوم حضور\nرفع الأثقال\n0%\n6\nأحمد محمد فهد الدوسري\n0 يوم حضور\nرفع الأثقال\n0%\n7\nأديب خالد جعيثن علي\n0 يوم حضور\nرفع الأثقال\n0%\n8\nاسامه منصورمحمدالريمي\n0 يوم حضور\nرفع الأثقال\n0%\n9\nاياد محمد سعيد الغامدي\n0 يوم حضور\nرفع الأثقال\n0%\n10\nبدر احمد حسين ازيبي\n0 يوم حضور\nرفع الأثقال\n0%\nالتنبيهات وآخر الإضافات\nمحمد حسن عامري\nمدرب جديد تم تسجيله · رفع الأثقال\n١١ يونيو ٢٠٢٦\nقاسم عادل مجرشي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nعبدالمحسن عبدالمجيد علي دايلي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nخالد عبدالله حيدر البراق\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nبدر محمد حسين عيظه\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nمؤيد سلمان احمد الفيفي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nنايف محمد حربان عاتي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nخالد علي شوعي شوك\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nعبد الله حسين مطر العتيبي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nيوسف سلطان يحيى هزازي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦"
+      },
+      {
+        "pageName": "mobile390-adminClub-unauthenticated",
+        "bodyPage": "adminClub",
+        "title": "إدارة النادي",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 1490,
+          "scrollScreens": 1.77
+        },
+        "activePageHeight": 1460,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 28,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 34,
+            "height": 34
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 34,
+            "height": 34
+          }
+        ],
+        "smallTargetCount": 17,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "adminLoginEmail",
+            "placeholder": "اسم المستخدم أو البريد الإلكتروني"
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginPass",
+            "placeholder": "كلمة المرور"
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 772,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Admin\nإدارة النادي\nإدارة النادي\n\nإدارة الرياضات والمدربين واللاعبين والبطاقات\n\nالرياضات\n\n8 رياضة مسجلة\n\nألعاب القوى\nمفعلة\n0 لاعب\n1 مدرب\nريشة الطائرة\nمفعلة\n0 لاعب\n1 مدرب\nكرة السلة\nمفعلة\n0 لاعب\n1 مدرب\nجوجيتسو\nمفعلة\n0 لاعب\n1 مدرب\nالكاراتيه\nمفعلة\n0 لاعب\n1 مدرب\nالسباحة\nمفعلة\n0 لاعب\n1 مدرب\nكرة الطائرة\nمفعلة\n0 لاعب\n1 مدرب\nرفع الأثقال\nمفعلة\n63 لاعب\n1 مدرب\nالمدربون\n\n8 مدرب في النظام\n\nالبطاقات\n\n71 بطاقة لاعب ومدرب"
+      },
+      {
+        "pageName": "mobile390-adminSettings-unauthenticated",
+        "bodyPage": "adminSettings",
+        "title": "الإعدادات",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentSize": {
+          "width": 390,
+          "height": 844
+        },
+        "contentScroller": {
+          "clientHeight": 844,
+          "scrollHeight": 844,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 595,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 9,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "adminLoginEmail",
+            "placeholder": "اسم المستخدم أو البريد الإلكتروني"
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginPass",
+            "placeholder": "كلمة المرور"
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 772,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Admin\nالإعدادات\nالإعدادات\n\nإعدادات النظام العامة حسب كل رياضة\n\nإعدادات الحضور\n\nحدد الرياضة ثم اضبط أوقات تسجيل حالاتها\n\nمعلومات النظام\n\nبيانات الإصدار الحالي\n\nإصدار النظام\nWave Lift 3.0 · v48\nآخر تحديث\n11 يونيو 2026"
+      }
+    ],
+    "auth": {
+      "coach": "success",
+      "player": "success",
+      "admin": "page.waitForFunction: Timeout 30000ms exceeded.",
+      "adminBypass": {
+        "opened": true,
+        "players": 63,
+        "coaches": 8,
+        "sports": 8
+      }
+    },
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 400 ()"
+    ],
+    "failedRequests": [],
+    "performance": {
+      "domContentLoaded": 936,
+      "load": 939,
+      "resourceCount": 26,
+      "transferKb": 698,
+      "largestResources": [
+        {
+          "name": "sport-swimming.webp",
+          "kb": 107
+        },
+        {
+          "name": "sport-athletics.webp",
+          "kb": 107
+        },
+        {
+          "name": "sport-weightlifting.webp",
+          "kb": 76
+        },
+        {
+          "name": "hilal-splash-v49.webp",
+          "kb": 69
+        },
+        {
+          "name": "sport-karate.webp",
+          "kb": 61
+        },
+        {
+          "name": "sport-basketball.webp",
+          "kb": 57
+        },
+        {
+          "name": "sport-jiujitsu.webp",
+          "kb": 46
+        },
+        {
+          "name": "sport-badminton.webp",
+          "kb": 46
+        },
+        {
+          "name": "sport-volleyball.webp",
+          "kb": 40
+        },
+        {
+          "name": "app.js?v=60",
+          "kb": 29
+        },
+        {
+          "name": "hilal-mark-v49.webp",
+          "kb": 28
+        },
+        {
+          "name": "style.css?v=60",
+          "kb": 17
+        }
+      ]
+    }
+  },
+  {
+    "label": "desktop",
+    "pages": [
+      {
+        "pageName": "desktop-home",
+        "bodyPage": "home",
+        "title": "ألعاب الهلال المختلفة",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 557,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 9,
+        "smallTargets": [],
+        "smallTargetCount": 0,
+        "unlabeledInputs": [],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": null,
+        "activeText": "ألعاب الهلال المختلفة\n\nاختر الرياضة ثم انتقل لمسار المدرب أو اللاعب\n\nWeightlifting\nرفع الأثقال\n128 لاعب\nSwimming\nالسباحة\n64 لاعب\nKarate\nالكاراتيه\n55 لاعب\nJiu-Jitsu\nجوجيتسو\n42 لاعب\nBadminton\nريشة الطائرة\n38 لاعب\nBasketball\nكرة السلة\n62 لاعب\nVolleyball\nكرة الطائرة\n58 لاعب\nAthletics\nألعاب القوى\n57 لاعب"
+      },
+      {
+        "pageName": "desktop-sport-login",
+        "bodyPage": "sport",
+        "title": "Weightlifting",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 209,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 3,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": null,
+        "activeText": "128 لاعب\nWeightlifting\n\nاختر المسار المناسب لرياضة رفع الأثقال\n\nدخول اللاعب\nدخول المدرب"
+      },
+      {
+        "pageName": "desktop-coachDash",
+        "bodyPage": "coachDash",
+        "title": "لوحة التحكم",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 1592,
+          "scrollScreens": 1.77
+        },
+        "activePageHeight": 1562,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 8,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dashboardWhatsappShare",
+            "text": "مشاركة واتساب",
+            "width": 156,
+            "height": 42
+          }
+        ],
+        "smallTargetCount": 2,
+        "unlabeledInputs": [],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 828,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Dashboard\nرفع الأثقال\nلوحة التحكم\n\nملخص سريع وتحكم أساسي للمدرب\n\nملخص اليوم\n\n٢٦ ذو الحجة ١٤٤٧ هـ\n١٢ يونيو ٢٠٢٦\n\nإجمالي اللاعبين\n63\nلاعب\nالحاضرون اليوم\n0\nحضور مسجل\nنسبة الحضور\n0%\nمن إجمالي اللاعبين\nالغائبون اليوم\n0\nلم يحضروا\nالتقرير الشهري\n\nاختر الشهر والسنة\n\nمشاركة واتساب\nيناير\nفبراير\nمارس\nأبريل\nمايو\nيونيو\nيوليو\nأغسطس\nسبتمبر\nأكتوبر\nنوفمبر\nديسمبر\n2026\n2025\n2024\n2023\n2022\n2021\nالحضور\n7\nالتأخير\n0\nبعذر\n0\nنسبة الحضور\n2.2%\nأفضل الحضور هذا الشهر\n5 لاعبين\n1.\nإبراهيم نصر الدين شيخ أنور\nفئة الكبار\nحضور 2 يوم\n40%\n2.\nحاتم محمد حسن المروعي\nفئة الكبار\nحضور 2 يوم\n40%\n3.\nمحمد راشد عبيد السبيعي\nفئة الكبار\nحضور 2 يوم\n40%\n4.\nمساعد عبدالعزيز آل عشيوان\nفئة الكبار\nحضور 1 يوم\n20%\n5.\nاحمد محمد احمد الحلاق\nفئة الناشئين\nحضور 0 يوم\n0%\nملخص الفئات هذا الشهر\nفئة الكبار\nإجمالي اللاعبين\n13\nالحضور\n7\nفئة الشباب\nإجمالي اللاعبين\n9\nالحضور\n0\nفئة الناشئين\nإجمالي اللاعبين\n17\nالحضور\n0\nفئة البراعم\nإجمالي اللاعبين\n24\nالحضور\n0\nإضافة لاعب"
+      },
+      {
+        "pageName": "desktop-attendance",
+        "bodyPage": "attendance",
+        "title": "الحضور والغياب",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 16882,
+          "scrollScreens": 18.76
+        },
+        "activePageHeight": 16852,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 390,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد راشد عبيد السبيعي  (36 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حاتم محمد حسن المروعي (34 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "مساعد عبدالعزيز آل عشيوان (33 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "صالح هتان صالح العقيل (29 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالعزيز موسى عجيم فقيهي (27 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "داحش محمد داحش كليبي (25 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "سعود بن أحمد بن علي فقيهي (24 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "رضوان ناصر جوهر أحمد (24 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "راكان هاددي علوي ديباجي (24 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "اسامه منصورمحمدالريمي (24 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "إبراهيم نصر الدين شيخ أنور (22 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد هادي محمد الشهراني (22 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالله احمد علي فقيهي (22 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "متعب علي محمد ازيبي (20 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "ياسر عبيد عوضة الشهراني (20 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالمجيد محمد داحش كليبي (20 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "فهد واصل فهد العتيبي (20 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "زياد موسى منصور حقوي (19 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "سليمان صادق صالح تكروني (19 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد علي حسن كليبي (18 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "محمد مبارك عبدالله الدوسري (18 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "خالد محمد صالح تكروني (18 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "ناصر محمد فهد الدوسري (17 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "طلال عبدالعزيز ناحي العنزي (17 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "أديب خالد جعيثن علي (17 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "فهد أحمد علي فقيهي (17 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "يوسف سلطان يحيى هزازي (16 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالعزيز محمد غنام العبداللطيف (16 سنة)",
+            "width": 1376,
+            "height": 28
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "عبدالاله هويدي عبدالله الدوسري (16 سنة)",
+            "width": 1376,
+            "height": 28
+          }
+        ],
+        "smallTargetCount": 64,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "search",
+            "placeholder": "ابحث باسم اللاعب أو رقم الهوية"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": "اكتب ملاحظة هنا..."
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 828,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "تشغيل يومي\nالحضور والغياب\nالسبت\n6\nالأحد\n7\nالاثنين\n8\nالثلاثاء\n9\nالأربعاء\n10\nالخميس\n11\nالجمعة\n12\nحاضر\n0\nغائب\n63\nالنسبة\n0%\nفئة الكبار\n13 لاعب\nمحمد راشد عبيد السبيعي (36 سنة)\nالحضور: 2\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nحاتم محمد حسن المروعي (34 سنة)\nالحضور: 2\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمساعد عبدالعزيز آل عشيوان (33 سنة)\nالحضور: 1\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nصالح هتان صالح العقيل (29 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالعزيز موسى عجيم فقيهي (27 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nداحش محمد داحش كليبي (25 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nسعود بن أحمد بن علي فقيهي (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nرضوان ناصر جوهر أحمد (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nراكان هاددي علوي ديباجي (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nاسامه منصورمحمدالريمي (24 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nإبراهيم نصر الدين شيخ أنور (22 سنة)\nالحضور: 2\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمحمد هادي محمد الشهراني (22 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالله احمد علي فقيهي (22 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفئة الشباب\n9 لاعب\nمتعب علي محمد ازيبي (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nياسر عبيد عوضة الشهراني (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالمجيد محمد داحش كليبي (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفهد واصل فهد العتيبي (20 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nزياد موسى منصور حقوي (19 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nسليمان صادق صالح تكروني (19 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمحمد علي حسن كليبي (18 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nمحمد مبارك عبدالله الدوسري (18 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nخالد محمد صالح تكروني (18 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفئة الناشئين\n17 لاعب\nناصر محمد فهد الدوسري (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nطلال عبدالعزيز ناحي العنزي (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nأديب خالد جعيثن علي (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nفهد أحمد علي فقيهي (17 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nيوسف سلطان يحيى هزازي (16 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالعزيز محمد غنام العبداللطيف (16 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nحاضر\nمتأخر\nبعذر\nعبدالاله هويدي عبدالله الدوسري (16 سنة)\nالحضور: 0\nالتأخير: 0\nالأعذار: 0\nح"
+      },
+      {
+        "pageName": "desktop-weekly",
+        "bodyPage": "weekly",
+        "title": "الجدول الأسبوعي",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 1025,
+          "scrollScreens": 1.14
+        },
+        "activePageHeight": 995,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 13,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "codeInput",
+            "placeholder": "A7-3K-L9"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "placeholder": ""
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 828,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "أسبوعي\nالجدول الأسبوعي\nالكود\nحفظ\n\nالأحد\nالاثنين\nالثلاثاء\nالأربعاء\nالخميس\nحفظ الجدول"
+      },
+      {
+        "pageName": "desktop-playerDash",
+        "bodyPage": "playerDash",
+        "title": "لوحة اللاعب",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 426,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 1,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [],
+        "stickyHeader": null,
+        "bottomNav": null,
+        "activeText": "لوحة اللاعب\nرفع الأثقال\nلوحة اللاعب\nجدول التمارين الأسبوعية\nالأحد\nتجربه\nالاثنين\nتمارين المهارة - تكنيك الرفعة 45 دقيقة\nالثلاثاء\nاستشفاء وتمطيط 30 دقيقة\nالأربعاء\nاختبار الأداء - سرعة وقوة\nالخميس\nتمرين شامل حسب توجيه المدرب"
+      },
+      {
+        "pageName": "desktop-adminDash-unauthenticated",
+        "bodyPage": "adminDash",
+        "title": "لوحة الإداري",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 1239,
+          "scrollScreens": 1.38
+        },
+        "activePageHeight": 1209,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 10,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [
+          {
+            "tag": "SELECT",
+            "id": "adminTodaySport",
+            "placeholder": ""
+          },
+          {
+            "tag": "SELECT",
+            "id": "adminRankingSport",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginEmail",
+            "placeholder": "اسم المستخدم أو البريد الإلكتروني"
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginPass",
+            "placeholder": "كلمة المرور"
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 828,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Admin\nلوحة الإداري\nلوحة الإداري\n\nنظرة شاملة وسريعة على بيانات النادي والحضور\n\nإجمالي اللاعبين\n63\nلاعب مسجل\nعدد المدربين\n8\nمدرب في النظام\nعدد الرياضات\n8\nرياضة مسجلة\nحضور اليوم\n0\nحضور مسجل\nملخص الحضور اليوم\n\n١٢ يونيو ٢٠٢٦\n\nالرياضة\nكل الرياضات\nألعاب القوى\nريشة الطائرة\nكرة السلة\nجوجيتسو\nالكاراتيه\nالسباحة\nكرة الطائرة\nرفع الأثقال\nالحاضرون\n0\nالمتأخرون\n0\nالغائبون\n0\nغياب بعذر\n0\nنسبة الحضور\n0%\nأفضل 10 لاعبين حضوراً\n\nحسب سجلات الحضور الفعلية\n\nالرياضة\nكل الرياضات\nألعاب القوى\nريشة الطائرة\nكرة السلة\nجوجيتسو\nالكاراتيه\nالسباحة\nكرة الطائرة\nرفع الأثقال\n1\nإبراهيم نصر الدين شيخ أنور\n2 يوم حضور\nرفع الأثقال\n40%\n2\nحاتم محمد حسن المروعي\n2 يوم حضور\nرفع الأثقال\n40%\n3\nمحمد راشد عبيد السبيعي\n2 يوم حضور\nرفع الأثقال\n40%\n4\nمساعد عبدالعزيز آل عشيوان\n1 يوم حضور\nرفع الأثقال\n20%\n5\nاحمد محمد احمد الحلاق\n0 يوم حضور\nرفع الأثقال\n0%\n6\nأحمد محمد فهد الدوسري\n0 يوم حضور\nرفع الأثقال\n0%\n7\nأديب خالد جعيثن علي\n0 يوم حضور\nرفع الأثقال\n0%\n8\nاسامه منصورمحمدالريمي\n0 يوم حضور\nرفع الأثقال\n0%\n9\nاياد محمد سعيد الغامدي\n0 يوم حضور\nرفع الأثقال\n0%\n10\nبدر احمد حسين ازيبي\n0 يوم حضور\nرفع الأثقال\n0%\nالتنبيهات وآخر الإضافات\n\nآخر اللاعبين والمدربين المضافين\n\nمحمد حسن عامري\nمدرب جديد تم تسجيله · رفع الأثقال\n١١ يونيو ٢٠٢٦\nقاسم عادل مجرشي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nعبدالمحسن عبدالمجيد علي دايلي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nخالد عبدالله حيدر البراق\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nبدر محمد حسين عيظه\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nمؤيد سلمان احمد الفيفي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nنايف محمد حربان عاتي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nخالد علي شوعي شوك\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nعبد الله حسين مطر العتيبي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦\nيوسف سلطان يحيى هزازي\nلاعب جديد تم تسجيله · رفع الأثقال\n٠٧ يونيو ٢٠٢٦"
+      },
+      {
+        "pageName": "desktop-adminClub-unauthenticated",
+        "bodyPage": "adminClub",
+        "title": "إدارة النادي",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 1133,
+          "scrollScreens": 1.26
+        },
+        "activePageHeight": 1103,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 28,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "تعديل الرياضة",
+            "width": 38,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "حذف الرياضة",
+            "width": 38,
+            "height": 38
+          }
+        ],
+        "smallTargetCount": 17,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "adminLoginEmail",
+            "placeholder": "اسم المستخدم أو البريد الإلكتروني"
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginPass",
+            "placeholder": "كلمة المرور"
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 828,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Admin\nإدارة النادي\nإدارة النادي\n\nإدارة الرياضات والمدربين واللاعبين والبطاقات\n\nالرياضات\n\n8 رياضة مسجلة\n\nألعاب القوى\nمفعلة\n0 لاعب\n1 مدرب\nريشة الطائرة\nمفعلة\n0 لاعب\n1 مدرب\nكرة السلة\nمفعلة\n0 لاعب\n1 مدرب\nجوجيتسو\nمفعلة\n0 لاعب\n1 مدرب\nالكاراتيه\nمفعلة\n0 لاعب\n1 مدرب\nالسباحة\nمفعلة\n0 لاعب\n1 مدرب\nكرة الطائرة\nمفعلة\n0 لاعب\n1 مدرب\nرفع الأثقال\nمفعلة\n63 لاعب\n1 مدرب\nالمدربون\n\n8 مدرب في النظام\n\nالبطاقات\n\n71 بطاقة لاعب ومدرب"
+      },
+      {
+        "pageName": "desktop-adminSettings-unauthenticated",
+        "bodyPage": "adminSettings",
+        "title": "الإعدادات",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentSize": {
+          "width": 1440,
+          "height": 900
+        },
+        "contentScroller": {
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollScreens": 1
+        },
+        "activePageHeight": 654,
+        "horizontalOverflow": false,
+        "scrollScreens": 1,
+        "visibleControls": 9,
+        "smallTargets": [
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "الرئيسية",
+            "width": 40,
+            "height": 40
+          }
+        ],
+        "smallTargetCount": 1,
+        "unlabeledInputs": [
+          {
+            "tag": "INPUT",
+            "id": "adminLoginEmail",
+            "placeholder": "اسم المستخدم أو البريد الإلكتروني"
+          },
+          {
+            "tag": "INPUT",
+            "id": "adminLoginPass",
+            "placeholder": "كلمة المرور"
+          }
+        ],
+        "stickyHeader": {
+          "top": 15,
+          "height": 70,
+          "position": "sticky",
+          "zIndex": "60"
+        },
+        "bottomNav": {
+          "top": 828,
+          "bottomGap": 0,
+          "height": 72,
+          "position": "fixed"
+        },
+        "activeText": "Admin\nالإعدادات\nالإعدادات\n\nإعدادات النظام العامة حسب كل رياضة\n\nإعدادات الحضور\n\nحدد الرياضة ثم اضبط أوقات تسجيل حالاتها\n\nمعلومات النظام\n\nبيانات الإصدار الحالي\n\nإصدار النظام\nWave Lift 3.0 · v48\nآخر تحديث\n11 يونيو 2026"
+      }
+    ],
+    "auth": {
+      "coach": "success",
+      "player": "success",
+      "admin": "page.waitForFunction: Timeout 30000ms exceeded.",
+      "adminBypass": {
+        "opened": true,
+        "players": 63,
+        "coaches": 8,
+        "sports": 8
+      }
+    },
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 400 ()"
+    ],
+    "failedRequests": [],
+    "performance": {
+      "domContentLoaded": 930,
+      "load": 933,
+      "resourceCount": 26,
+      "transferKb": 698,
+      "largestResources": [
+        {
+          "name": "sport-swimming.webp",
+          "kb": 107
+        },
+        {
+          "name": "sport-athletics.webp",
+          "kb": 107
+        },
+        {
+          "name": "sport-weightlifting.webp",
+          "kb": 76
+        },
+        {
+          "name": "hilal-splash-v49.webp",
+          "kb": 69
+        },
+        {
+          "name": "sport-karate.webp",
+          "kb": 61
+        },
+        {
+          "name": "sport-basketball.webp",
+          "kb": 57
+        },
+        {
+          "name": "sport-jiujitsu.webp",
+          "kb": 46
+        },
+        {
+          "name": "sport-badminton.webp",
+          "kb": 46
+        },
+        {
+          "name": "sport-volleyball.webp",
+          "kb": 40
+        },
+        {
+          "name": "app.js?v=60",
+          "kb": 29
+        },
+        {
+          "name": "hilal-mark-v49.webp",
+          "kb": 28
+        },
+        {
+          "name": "style.css?v=60",
+          "kb": 17
+        }
+      ]
+    }
+  }
+]

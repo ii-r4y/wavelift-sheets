@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>صالة الرياضة — Wave Lift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wavelift-app.css?v=94">
+<style>
+  /* الصفحة مستقلة وتتمرر عادي (بدون قفل الفريم زي الصفحة الرئيسية) */
+  html, body { height: auto; min-height: 100%; overflow: visible; display: block; }
+  body { padding-bottom: 40px; }
+  .wrap { max-width: 460px; margin: 0 auto; padding: 18px 16px 0; }
+  .hidden { display: none !important; }
+
+  .gym-sel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: rtl; margin-bottom: 18px; }
+  .gym-sel-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    box-shadow: var(--shadow-soft); padding: 14px 10px; min-height: 60px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-family: inherit; font-weight: 800; font-size: 14px; color: var(--brand-ink);
+    cursor: pointer; transition: transform .12s, box-shadow .15s;
+  }
+  .gym-sel-card:active { transform: scale(.97); }
+  .gym-sel-card.on { background: linear-gradient(145deg, var(--brand-1), var(--brand-2)); color: #fff; border: none; box-shadow: var(--shadow-btn); }
+  .gym-sel-card.add { color: var(--brand-2); font-size: 20px; border: 1.5px dashed var(--field-line); box-shadow: none; background: var(--field-bg); }
+
+  .section-label { display: block; color: var(--brand-2); font-weight: 800; font-size: 13px; margin: 4px 2px 10px; text-align: right; }
+
+  .gym-ex-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-soft); padding: 14px; margin-bottom: 10px; }
+  .gym-ex-name { display: block; color: var(--brand-ink); font-weight: 800; font-size: 15px; text-align: right; }
+  .gym-ex-meta { display: block; color: var(--muted); font-weight: 600; font-size: 13px; text-align: right; margin-top: 4px; }
+  .gym-ex-meta.accent { color: var(--brand-2); font-weight: 700; }
+  .gym-ex-video { display: inline-block; margin-top: 6px; color: var(--brand-2); font-weight: 700; font-size: 13px; text-decoration: none; }
+  .gym-ex-actions { display: flex; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .ghostbtn {
+    flex: 1; height: 38px; border-radius: 11px; border: 1px solid var(--line); background: var(--field-bg);
+    color: var(--brand-2); font-family: inherit; font-weight: 800; font-size: 12.5px; cursor: pointer;
+  }
+  .ghostbtn:active { transform: scale(.96); }
+
+  .action-row { display: flex; gap: 9px; margin-bottom: 14px; }
+  .action-row .btn, .action-row .ghostbtn { margin-top: 0; height: 46px; }
+
+  .save-template-btn { width: 100%; margin-top: 4px; height: 46px; }
+
+  .template-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft);
+    padding: 13px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 9px;
+  }
+  .template-card .ti { display: flex; flex-direction: column; gap: 3px; text-align: right; }
+  .template-card .ti b { color: var(--brand-ink); font-weight: 800; font-size: 14px; }
+  .template-card .ti small { color: var(--muted); font-weight: 600; font-size: 12px; }
+  .template-card .btn { width: auto; margin-top: 0; height: 40px; padding: 0 16px; font-size: 13px; }
+
+  .empty { text-align: center; color: var(--muted); font-weight: 600; font-size: 13.5px; padding: 22px 4px; }
+
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(10px);
+    background: #0b1b3f; color: #fff; padding: 11px 20px; border-radius: 14px; font-weight: 700; font-size: 13px;
+    z-index: 300; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .gview { display: none; }
+  .gview.active { display: block; }
+
+  .role-code-back { background: none; border: none; cursor: pointer; color: var(--brand-2); font-family: inherit; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+
+  #viewLogin .logo { margin-bottom: 18px; }
+
+  /* ===== معرض التمارين (أيقونات) ===== */
+  .ex-icon-badge { width: 34px; height: 34px; border-radius: 10px; background: var(--chip-bg); display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .ex-icon-badge svg { width: 20px; height: 20px; color: var(--brand-2); }
+  .ex-icon-badge img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+  .gym-ex-head { display: flex; align-items: center; gap: 10px; flex-direction: row-reverse; justify-content: flex-end; }
+  .gym-ex-head .gym-ex-texts { flex: 1 1 auto; min-width: 0; }
+
+  .picker-manual { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 46px; margin-top: 4px; border: 1.5px dashed var(--field-line); border-radius: 14px; background: var(--field-bg); color: var(--brand-2); font-family: inherit; font-weight: 800; font-size: 13.5px; cursor: pointer; }
+  .picker-group-label { color: var(--brand-2); font-weight: 800; font-size: 13px; text-align: right; margin: 14px 2px 8px; }
+  .picker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: rtl; }
+  .picker-card { display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft); padding: 12px 6px; cursor: pointer; font-family: inherit; }
+  .picker-card:active { transform: scale(.97); }
+  .picker-card .ex-icon-badge { width: 42px; height: 42px; }
+  .picker-card .ex-icon-badge svg { width: 24px; height: 24px; }
+  .picker-card span { font-weight: 800; font-size: 12.5px; color: var(--brand-ink); line-height: 1.3; }
+
+  .video-embed-wrap { position: relative; width: 100%; padding-top: 56.25%; margin-top: 14px; border-radius: 16px; overflow: hidden; background: #000; }
+  .video-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .gym-ex-photo { width: 100%; height: 150px; object-fit: cover; border-radius: 14px; margin-bottom: 10px; display: block; }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="app">
+
+  <!-- ══════════════ تسجيل الدخول ══════════════ -->
+  <section id="viewLogin" class="gview active">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#1565e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="5"/><path d="M11.5 11.5 19 19"/><path d="M19 19l2 2M19 19l-2 2"/><path d="M5.5 5.5l5 5"/></svg></div>
+    <div class="eyebrow">Wave Lift</div>
+    <h1>صالة الرياضة</h1>
+    <p class="sub">سجّل دخولك كمدرب أو لاعب للمتابعة</p>
+
+    <div class="opts" id="roleChooser" style="margin-top:22px;">
+      <div class="opt primary" data-role="coach">
+        <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="ot"><b>دخول كمدرب</b><small>إدارة برامج التمارين</small></div>
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </div>
+      <div class="opt ghost" data-role="player">
+        <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/><circle cx="12" cy="8" r="4"/></svg></div>
+        <div class="ot"><b>دخول كلاعب</b><small>متابعة برنامجك التدريبي</small></div>
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </div>
+    </div>
+
+    <div class="field hidden" id="codeField">
+      <button class="role-code-back" id="backToRoles" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>رجوع</button>
+      <label id="codeLabel" for="accessCode">كود الدخول</label>
+      <input id="accessCode" class="input code" type="text" placeholder="اكتب الكود هنا">
+      <div id="loginMsg" style="color:var(--red);font-weight:700;font-size:13px;margin-top:8px;text-align:right;"></div>
+      <button class="btn" id="submitLogin" type="button">دخول</button>
+    </div>
+  </section>
+
+  <!-- ══════════════ لوحة المدرب — التمارين ══════════════ -->
+  <section id="viewTraining" class="gview">
+    <div class="appbar">
+      <button class="home-btn" data-logout title="تسجيل خروج"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
+      <span class="title">مرحباً، <b id="coachNameLbl"></b></span>
+      <span class="tag">صالة الرياضة</span>
+    </div>
+    <div class="page-head"><h2>برامج التمارين</h2></div>
+    <div class="page-body">
+      <span class="section-label">1. اختر البرنامج</span>
+      <div class="gym-sel-grid" id="programCards"></div>
+
+      <div id="catBlock" class="hidden">
+        <span class="section-label">2. اختر الفئة</span>
+        <div class="gym-sel-grid" id="categoryCards"></div>
+      </div>
+
+      <div id="exBlock" class="hidden">
+        <div class="catbar"><span class="cn" id="exHeading"></span></div>
+        <div class="action-row">
+          <button class="ghostbtn" id="fromTemplateBtn" type="button">📋 من القائمة</button>
+          <button class="btn" id="addExBtn" type="button">+ تمرين جديد</button>
+        </div>
+        <div id="exList"></div>
+        <button class="ghostbtn save-template-btn hidden" id="saveAsTemplateBtn" type="button">⭐ حفظ التمارين الحالية كقالب جاهز</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ لوحة اللاعب ══════════════ -->
+  <section id="viewPlayer" class="gview">
+    <div class="appbar">
+      <button class="home-btn" data-logout title="تسجيل خروج"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
+      <span class="title">لوحة اللاعب</span>
+      <span class="tag">صالة الرياضة</span>
+    </div>
+    <div class="page-head"><h2 id="playerNameLbl">برنامجي التدريبي</h2></div>
+    <div class="page-body">
+      <span class="section-label">1. اختر البرنامج</span>
+      <div class="gym-sel-grid" id="playerProgramCards"></div>
+
+      <div id="playerCatBlock" class="hidden">
+        <span class="section-label">2. اختر فئتك</span>
+        <div class="gym-sel-grid" id="playerCategoryCards"></div>
+      </div>
+
+      <div id="playerExList"></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════════ modal: إضافة برنامج ══════════════ -->
+<div class="modal" id="modalAddProgram">
+  <div class="modal-card" style="max-width:420px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div>
+    <h3>إضافة برنامج جديد</h3>
+    <div class="field"><label for="newProgramName">اسم البرنامج</label><input id="newProgramName" class="input" type="text" placeholder="مثال: كمال أجسام"></div>
+    <div id="addProgramMsg" style="color:var(--red);font-weight:700;font-size:13px;margin-top:8px;text-align:right;"></div>
+    <button class="btn" id="saveNewProgramBtn" type="button">حفظ البرنامج</button>
+  </div>
+</div>
+
+<!-- ══════════════ modal: اختيار تمرين من المعرض ══════════════ -->
+<div class="modal" id="modalExercisePicker">
+  <div class="modal-card" style="max-width:460px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10"/></svg></div>
+    <button class="role-code-back hidden" id="pickerBackBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>رجوع للعضلات</button>
+    <h3 id="pickerTitle">اختر العضلة</h3>
+    <p id="pickerSubtitle">اضغط على العضلة بالرسم، وبعدها اختر التمرين المناسب</p>
+    <button class="picker-manual" id="pickerManualBtn" type="button">✏️ إدخال يدوي (تمرين غير موجود بالمعرض)</button>
+    <div id="pickerBodyWrap">
+      <div class="segtabs">
+        <button class="seg on" id="bodyViewFrontBtn" type="button">أمامي</button>
+        <button class="seg" id="bodyViewBackBtn" type="button">خلفي</button>
+      </div>
+      <div id="pickerBodyMapEl"></div>
+    </div>
+    <div id="pickerGalleryEl"></div>
+  </div>
+</div>
+
+<!-- ══════════════ modal: إضافة تمرين ══════════════ -->
+<div class="modal" id="modalAddExercise">
+  <div class="modal-card" style="max-width:420px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10"/></svg></div>
+    <h3>إضافة تمرين</h3>
+    <p id="exCategoryLabel"></p>
+    <input id="exIconKey" type="hidden">
+    <div class="field"><label for="exName">اسم التمرين</label><input id="exName" class="input" type="text"></div>
+    <div class="field"><label for="exType">نوع التمرين</label><input id="exType" class="input" type="text" placeholder="مثال: ضغط صدر"></div>
+    <div class="field"><label for="exDuration">عدد الجولات / التكرار</label><input id="exDuration" class="input" type="text" placeholder="مثال: 4 جولات × 10 تكرار"></div>
+    <div class="field"><label for="exNotes">ملاحظات</label><textarea id="exNotes" class="ta-input" placeholder="اختياري"></textarea></div>
+    <div class="field"><label for="exVideo">رابط فيديو</label><input id="exVideo" class="input" type="url" placeholder="اختياري"></div>
+    <div class="field">
+      <label for="exImageFile">صورة التمرين (اختياري — من المعرض أو الكاميرا)</label>
+      <input id="exImageFile" class="input" type="file" accept="image/*">
+      <img id="exImagePreview" class="hidden" style="max-width:100%;border-radius:14px;margin-top:10px;">
+    </div>
+    <div id="addExerciseMsg" style="color:var(--red);font-weight:700;font-size:13px;margin-top:8px;text-align:right;"></div>
+    <button class="btn" id="saveExerciseBtn" type="button">حفظ التمرين</button>
+  </div>
+</div>
+
+<!-- ══════════════ modal: تعديل تمرين ══════════════ -->
+<div class="modal" id="modalEditExercise">
+  <div class="modal-card" style="max-width:420px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <h3>تعديل التمرين</h3>
+    <input id="editExId" type="hidden">
+    <input id="editExIconKey" type="hidden">
+    <div class="field"><label for="editExName">اسم التمرين</label><input id="editExName" class="input" type="text"></div>
+    <div class="field"><label for="editExType">نوع التمرين</label><input id="editExType" class="input" type="text"></div>
+    <div class="field"><label for="editExDuration">عدد الجولات / التكرار</label><input id="editExDuration" class="input" type="text"></div>
+    <div class="field"><label for="editExNotes">ملاحظات</label><textarea id="editExNotes" class="ta-input"></textarea></div>
+    <div class="field"><label for="editExVideo">رابط فيديو</label><input id="editExVideo" class="input" type="url"></div>
+    <input id="editExImageUrl" type="hidden">
+    <div class="field">
+      <label for="editExImageFile">صورة التمرين (اختياري — من المعرض أو الكاميرا)</label>
+      <input id="editExImageFile" class="input" type="file" accept="image/*">
+      <img id="editExImagePreview" class="hidden" style="max-width:100%;border-radius:14px;margin-top:10px;">
+    </div>
+    <div id="editExerciseMsg" style="color:var(--red);font-weight:700;font-size:13px;margin-top:8px;text-align:right;"></div>
+    <button class="btn" id="saveEditExerciseBtn" type="button">حفظ التعديل</button>
+  </div>
+</div>
+
+<!-- ══════════════ modal: التمارين الجاهزة (قوالب) ══════════════ -->
+<div class="modal" id="modalTemplates">
+  <div class="modal-card" style="max-width:420px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <h3>📋 التمارين الجاهزة</h3>
+    <p>اختر قالباً لنسخ تمارينه للبرنامج والفئة الحالية</p>
+    <div id="templatesListEl" style="margin-top:14px;"></div>
+  </div>
+</div>
+
+<!-- ══════════════ modal: حفظ كقالب ══════════════ -->
+<div class="modal" id="modalSaveTemplate">
+  <div class="modal-card" style="max-width:420px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <h3>حفظ كقالب جاهز</h3>
+    <div class="field"><label for="saveTemplateName">اسم القالب</label><input id="saveTemplateName" class="input" type="text" placeholder="مثال: تمرين الصدر المتكامل"></div>
+    <div id="saveTemplateMsg" style="color:var(--red);font-weight:700;font-size:13px;margin-top:8px;text-align:right;"></div>
+    <button class="btn" id="confirmSaveTemplateBtn" type="button">حفظ القالب</button>
+  </div>
+</div>
+
+<!-- ══════════════ modal: فيديو التمرين (يوتيوب مجاني) ══════════════ -->
+<div class="modal" id="modalVideo">
+  <div class="modal-card" style="max-width:480px;margin:0 auto;">
+    <button class="modal-x" data-close>×</button>
+    <h3>فيديو التمرين</h3>
+    <div class="video-embed-wrap" id="videoFrameWrap"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- مكتبة مجانية مفتوحة المصدر (Apache 2.0) لرسم جسم تفاعلي قابل للضغط على العضلات -->
+<script src="https://unpkg.com/body-muscles/dist/umd/body-muscles.umd.min.js"></script>
+<script>
+/* ============================================================
+   عدّل هذا الرابط بعد نشر Google Apps Script كـ Web App
+   (شوف تعليمات الإعداد أعلى ملف GymSystem.gs)
+   ============================================================ */
+const GYM_API_URL = "https://script.google.com/macros/s/AKfycbwvtKZR_PAuFf3ofdG8B67MGHeIIZX8nLw6Sg9up-BHvrHVI-6FahE_AE4BZdyNDTJe/exec";
+
+const GYM_CATEGORIES = ["الكبار", "الشباب", "الناشئين", "البراعم"];
+
+/* ===== معرض التمارين (أيقونات مبسّطة مؤقتة — تُستبدل لاحقاً بصور حقيقية) ===== */
+const ICON_SVG = {
+  dumbbell: '<path d="M7 12h10"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="17" y="9" width="3" height="6" rx="1"/>',
+  personSquat: '<circle cx="12" cy="4" r="1.8"/><path d="M12 5.8v5"/><path d="M12 10.8 9 13.5v6.5"/><path d="M12 10.8l3 2.7v6.5"/><path d="M8.5 9.3h7"/>',
+  personLunge: '<circle cx="10" cy="4" r="1.8"/><path d="M10 5.8v5"/><path d="M10 10.8 7 13v7"/><path d="M10 10.8l6-1 1.5 8"/><path d="M7.5 9h5"/>',
+  cableMachine: '<path d="M4 3h16"/><path d="M4 3v4M20 3v4"/><circle cx="12" cy="8" r="1.2"/><path d="M12 9.2v6"/><path d="M9 17h6"/>',
+  personArmsOut: '<circle cx="12" cy="3.8" r="1.8"/><path d="M12 5.6v6"/><path d="M4 9h16"/><path d="M12 11.6 9 20M12 11.6l3 8.4"/>',
+  personArmsForward: '<circle cx="12" cy="3.8" r="1.8"/><path d="M12 5.6v6"/><path d="M12 8 5 6M12 8l7-2"/><path d="M12 11.6 9 20M12 11.6l3 8.4"/>',
+  benchPress: '<path d="M3 19h18"/><path d="M7 19v-3h10v3"/><path d="M3 12h18"/><circle cx="3" cy="12" r="1.6"/><circle cx="21" cy="12" r="1.6"/>',
+};
+
+const MUSCLE_GROUPS = [
+  { key: "legs", name: "الأرجل", icon: "personSquat" },
+  { key: "glutes", name: "المؤخرة", icon: "personLunge" },
+  { key: "chest", name: "الصدر", icon: "benchPress" },
+  { key: "back", name: "الظهر", icon: "cableMachine" },
+  { key: "shoulders", name: "الأكتاف", icon: "personArmsOut" },
+  { key: "biceps", name: "البايسبس", icon: "dumbbell" },
+  { key: "triceps", name: "الترايسبس", icon: "cableMachine" },
+  { key: "forearm", name: "الساعد", icon: "dumbbell" },
+];
+
+const EXERCISE_CATALOG = [
+  { key: "legPress", name: "Leg Press", muscle: "legs", icon: "personSquat", youtubeId: "K5n2vg3oZa4" },
+  { key: "jumpBox", name: "Jump Box", muscle: "legs", icon: "personLunge", youtubeId: "G-bxQY57mKc" },
+  { key: "squat", name: "Squat", muscle: "legs", icon: "personSquat", youtubeId: "otzWCWpuW-A" },
+  { key: "legExtension", name: "Leg Extension", muscle: "legs", icon: "personSquat", youtubeId: "gI0cn4DMFFI" },
+  { key: "adduction", name: "Adduction", muscle: "legs", icon: "personSquat", youtubeId: "HPR_Opslke0" },
+  { key: "sumoSquat", name: "Sumo Squat", muscle: "glutes", icon: "personSquat", youtubeId: "kjlfpqXnyL8" },
+  { key: "stepBackLunges", name: "Step Back Lunges", muscle: "glutes", icon: "personLunge", youtubeId: "I1IvDQibYLU" },
+  { key: "glutes", name: "Glutes", muscle: "glutes", icon: "personLunge", youtubeId: "UVucPKyQVLU" },
+  { key: "peckDeck", name: "Peck Deck", muscle: "chest", icon: "cableMachine", youtubeId: "wsNAD1BpiaE" },
+  { key: "inclineBenchPress", name: "Incline Bench Press", muscle: "chest", icon: "benchPress", youtubeId: "5kyLUGVq_pk" },
+  { key: "lateralRaises", name: "Lateral Raises", muscle: "shoulders", icon: "personArmsOut", youtubeId: "KCMF8w7rs70" },
+  { key: "frontRaises", name: "Front Raises", muscle: "shoulders", icon: "personArmsForward", youtubeId: "vOqq8BfT3gQ" },
+  { key: "ropePushdowns", name: "Rope Pushdowns", muscle: "triceps", icon: "cableMachine", youtubeId: "vPeQu_L-1n0" },
+  { key: "bicepsCableCross", name: "Biceps Cable Cross", muscle: "biceps", icon: "cableMachine", youtubeId: "2MUEL4nL6hA" },
+  { key: "latPulldown", name: "Lat Pulldown", muscle: "back", icon: "cableMachine", youtubeId: "SALxEARiMkw" },
+  { key: "pulloverMachine", name: "Pullover Machine", muscle: "back", icon: "cableMachine", youtubeId: "ZOwR5Ar81rg" },
+  { key: "seatedInclineDumbbellCurl", name: "Seated Incline Dumbbell Curl", muscle: "biceps", icon: "dumbbell", youtubeId: "soxrZlIl35U", defaultDuration: "4 مجموعات × 10 تكرار", defaultNotes: "الراحة: 45 ثانية" },
+  { key: "oneArmCableCurl", name: "One Arm Cable Curl", muscle: "biceps", icon: "cableMachine", youtubeId: "njLoCel5lUI", defaultDuration: "3 مجموعات × 12 تكرار", defaultNotes: "الراحة: مجموعة سوبر (Super Set)" },
+  { key: "dumbbellPreacherCurl", name: "Dumbbell Preacher Curl", muscle: "biceps", icon: "dumbbell", youtubeId: "gSsEC9O6NYU", defaultDuration: "3 مجموعات × 12 تكرار", defaultNotes: "الراحة: مجموعة سوبر (Super Set)" },
+  { key: "bentOverKickback", name: "Bent Over Kickback", muscle: "triceps", icon: "dumbbell", youtubeId: "6SS6K3lAwZ8", defaultDuration: "4 مجموعات × 10 تكرار", defaultNotes: "الراحة: 45 ثانية" },
+  { key: "oneArmReversePushdown", name: "One Arm Reverse Push-Down", muscle: "triceps", icon: "cableMachine", youtubeId: "ng1N_XaqWPg", defaultDuration: "3 مجموعات × 12 تكرار", defaultNotes: "الراحة: مجموعة سوبر (Super Set)" },
+  { key: "cableRopeOverheadTricepsExtension", name: "Cable Rope Overhead Triceps Extension", muscle: "triceps", icon: "cableMachine", youtubeId: "mRozZKkGIfg", defaultDuration: "3 مجموعات × 12 تكرار", defaultNotes: "الراحة: مجموعة سوبر (Super Set)" },
+  { key: "dumbbellWristCurl", name: "Dumbbell Wrist Curl", muscle: "forearm", icon: "dumbbell", youtubeId: "7ac_qmBjkFI", defaultDuration: "3 مجموعات × 12 تكرار", defaultNotes: "الراحة: 45 ثانية" },
+  { key: "reverseWristCurl", name: "Reverse Wrist Curl", muscle: "forearm", icon: "dumbbell", youtubeId: "SfENsl5klVA", defaultDuration: "3 مجموعات × 12 تكرار", defaultNotes: "الراحة: 45 ثانية" },
+  { key: "gobletSquat", name: "Goblet Squat", muscle: "legs", icon: "personSquat", youtubeId: "jZOvxOKYUFc" },
+  { key: "deadlift", name: "Deadlift", muscle: "legs", icon: "personSquat", youtubeId: "gLogcYIvgRA" },
+  { key: "floorPress", name: "Floor Press", muscle: "chest", icon: "benchPress", youtubeId: "qHCI9rK7HqM" },
+  { key: "chestPress", name: "Chest Press", muscle: "chest", icon: "benchPress", youtubeId: "MdwJPkuesIo" },
+  { key: "bentOverRow", name: "Bent Over Row", muscle: "back", icon: "dumbbell", youtubeId: "knB5Q4FN4ck" },
+  { key: "shoulderPress", name: "Shoulder Press", muscle: "shoulders", icon: "dumbbell", youtubeId: "qEwKCR5JCog" },
+  { key: "dumbbellBicepCurl", name: "Dumbbell Bicep Curl", muscle: "biceps", icon: "dumbbell", youtubeId: "6DeLZ6cbgWQ" },
+  { key: "tricepExtension", name: "Tricep Extension", muscle: "triceps", icon: "dumbbell", youtubeId: "DZgpCf5alfI" },
+];
+
+function iconSvgRaw(shapeKey) {
+  const shape = ICON_SVG[shapeKey] || ICON_SVG.dumbbell;
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${shape}</svg>`;
+}
+
+/** يعرض صورة حقيقية لو المدرب ضاف واحدة لهذا التمرين بالمعرض (entry.imageUrl)، وإلا يرجع للأيقونة البسيطة. */
+function iconSvgFor(iconKey) {
+  const entry = EXERCISE_CATALOG.find((c) => c.key === iconKey);
+  if (entry && entry.imageUrl) return `<img src="${esc(entry.imageUrl)}" alt="${esc(entry.name)}" loading="lazy">`;
+  return iconSvgRaw(entry ? entry.icon : "dumbbell");
+}
+
+/* رابط بحث خارجي مجاني لموقع MuscleWiki (بدون API) — احتياطي للتمارين اليدوية بدون فيديو مرفق */
+function musclewikiLink(ex) {
+  const entry = EXERCISE_CATALOG.find((c) => c.key === ex.IconKey);
+  const term = entry ? entry.name : ex.ExerciseName;
+  return `https://www.google.com/search?q=${encodeURIComponent("site:musclewiki.com " + term)}`;
+}
+
+/* فيديو يوتيوب مجاني ومباشر (مضمّن Embed رسمي، بدون اشتراك ولا تحميل) لكل تمرين بالمعرض */
+function youtubeIdFor(ex) {
+  const entry = EXERCISE_CATALOG.find((c) => c.key === ex.IconKey);
+  return entry ? entry.youtubeId : null;
+}
+
+function openVideoModal(youtubeId) {
+  $("videoFrameWrap").innerHTML = `<iframe src="https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}?autoplay=1" title="فيديو التمرين" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  openModal("modalVideo");
+}
+
+/* ===== صورة يرفعها المدرب من جواله (معرض أو كاميرا) — تُضغط بالمتصفح ثم تُرفع لـ Drive ===== */
+function compressImageFile(file, maxDim, quality) {
+  maxDim = maxDim || 900; quality = quality || 0.75;
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if (w > h && w > maxDim) { h = Math.round(h * (maxDim / w)); w = maxDim; }
+        else if (h > maxDim) { w = Math.round(w * (maxDim / h)); h = maxDim; }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function wireImagePicker(fileInputId, previewImgId, onReady) {
+  $(fileInputId).addEventListener("change", async () => {
+    const file = $(fileInputId).files[0];
+    if (!file) return;
+    const dataUrl = await compressImageFile(file);
+    $(previewImgId).src = dataUrl;
+    $(previewImgId).classList.remove("hidden");
+    onReady(dataUrl.split(",")[1]);
+  });
+}
+
+async function uploadImageIfPending(base64) {
+  if (!base64) return "";
+  const r = await apiPostAuth("uploadExerciseImage", { imageBase64: base64, mimeType: "image/jpeg" });
+  if (!r.ok) { toast(r.message || "تعذر رفع الصورة"); return ""; }
+  return r.imageUrl;
+}
+
+const state = {
+  role: "",
+  coach: null,   // { name, code }
+  player: null,  // { id, name }
+  programs: [],
+  templates: [],
+  activeProgram: "",
+  activeCategory: "",
+  exercises: [],
+  pendingIconKey: "",
+  pendingImageBase64: "",
+  editPendingImageBase64: "",
+  pickerMuscle: "",
+  bodyView: "FRONT",
+  bodyChart: null,
+  playerActiveProgram: "",
+  playerActiveCategory: "",
+};
+
+const $ = (id) => document.getElementById(id);
+const esc = (v) => String(v == null ? "" : v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+wireImagePicker("exImageFile", "exImagePreview", (b64) => { state.pendingImageBase64 = b64; });
+wireImagePicker("editExImageFile", "editExImagePreview", (b64) => { state.editPendingImageBase64 = b64; });
+
+function toast(text) {
+  const el = $("toast");
+  el.textContent = text;
+  el.classList.add("show");
+  setTimeout(() => el.classList.remove("show"), 2200);
+}
+
+/* ===== اتصال بـ Google Apps Script ===== */
+async function apiGet(action, params) {
+  const url = new URL(GYM_API_URL);
+  url.searchParams.set("action", action);
+  Object.entries(params || {}).forEach(([k, v]) => url.searchParams.set(k, v));
+  const res = await fetch(url.toString());
+  return res.json();
+}
+
+async function apiPost(action, data) {
+  const res = await fetch(GYM_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ action, ...(data || {}) }),
+  });
+  return res.json();
+}
+
+/** نفس apiPost لكن يرفق كود المدرب تلقائياً — تُستخدم لعمليات الإضافة/التعديل/الحذف. */
+async function apiPostAuth(action, data) {
+  return apiPost(action, { ...(data || {}), coachCode: state.coach ? state.coach.code : "" });
+}
+
+/* ===== تنقل بين الشاشات ===== */
+function showView(id) {
+  document.querySelectorAll(".gview").forEach((v) => v.classList.toggle("active", v.id === id));
+}
+
+function openModal(id) { $(id).classList.add("show"); }
+function closeModal(id) { $(id).classList.remove("show"); }
+document.querySelectorAll(".modal [data-close]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const modalEl = btn.closest(".modal");
+    modalEl.classList.remove("show");
+    if (modalEl.id === "modalVideo") $("videoFrameWrap").innerHTML = "";
+  });
+});
+
+/* ===== تسجيل الدخول ===== */
+document.querySelectorAll("#roleChooser .opt").forEach((opt) => {
+  opt.addEventListener("click", () => {
+    state.role = opt.dataset.role;
+    $("codeLabel").textContent = state.role === "coach" ? "كود دخول المدرب" : "كود دخول اللاعب";
+    $("accessCode").value = "";
+    $("loginMsg").textContent = "";
+    $("roleChooser").classList.add("hidden");
+    $("codeField").classList.remove("hidden");
+    setTimeout(() => $("accessCode").focus(), 60);
+  });
+});
+
+$("backToRoles").addEventListener("click", () => {
+  $("codeField").classList.add("hidden");
+  $("roleChooser").classList.remove("hidden");
+});
+
+$("submitLogin").addEventListener("click", submitLogin);
+$("accessCode").addEventListener("keydown", (e) => { if (e.key === "Enter") submitLogin(); });
+
+async function submitLogin() {
+  const code = $("accessCode").value.trim();
+  if (!code) return ($("loginMsg").textContent = "اكتب الكود");
+  const btn = $("submitLogin");
+  btn.disabled = true;
+  try {
+    if (state.role === "coach") {
+      const r = await apiPost("coachLogin", { code });
+      if (!r.ok) { $("loginMsg").textContent = r.message || "كود غير صحيح"; return; }
+      state.coach = { name: r.coach.name, code };
+      sessionStorage.setItem("gymCoach", JSON.stringify(state.coach));
+      $("coachNameLbl").textContent = r.coach.name;
+      showView("viewTraining");
+      await loadTrainingView();
+    } else {
+      const r = await apiPost("playerLogin", { code });
+      if (!r.ok) { $("loginMsg").textContent = r.message || "كود غير صحيح"; return; }
+      state.player = r.player;
+      sessionStorage.setItem("gymPlayer", JSON.stringify(r.player));
+      $("playerNameLbl").textContent = `مرحباً، ${r.player.name}`;
+      showView("viewPlayer");
+      await loadPlayerView();
+    }
+  } catch (err) {
+    $("loginMsg").textContent = "تعذر الاتصال بالخادم";
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+document.querySelectorAll("[data-logout]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    sessionStorage.removeItem("gymCoach");
+    sessionStorage.removeItem("gymPlayer");
+    state.role = ""; state.coach = null; state.player = null;
+    $("codeField").classList.add("hidden");
+    $("roleChooser").classList.remove("hidden");
+    showView("viewLogin");
+  });
+});
+
+/* ===== لوحة المدرب — التمارين ===== */
+async function loadTrainingView() {
+  state.activeProgram = ""; state.activeCategory = ""; state.exercises = [];
+  $("catBlock").classList.add("hidden");
+  $("exBlock").classList.add("hidden");
+  try {
+    const { programs } = await apiGet("getPrograms", {});
+    state.programs = programs;
+    renderProgramCards();
+  } catch (err) {
+    toast("تعذر تحميل البرامج");
+  }
+}
+
+function renderProgramCards() {
+  const root = $("programCards");
+  root.innerHTML = state.programs.map((p) =>
+    `<button class="gym-sel-card ${p.Name === state.activeProgram ? "on" : ""}" data-prog="${esc(p.Name)}">${esc(p.Name)}</button>`
+  ).join("") + `<button class="gym-sel-card add" id="addProgramInline" type="button">+</button>`;
+  root.querySelectorAll("[data-prog]").forEach((btn) => {
+    btn.addEventListener("click", () => selectProgram(btn.dataset.prog));
+  });
+  $("addProgramInline").addEventListener("click", () => {
+    $("newProgramName").value = ""; $("addProgramMsg").textContent = "";
+    openModal("modalAddProgram");
+  });
+}
+
+function selectProgram(name) {
+  state.activeProgram = name;
+  state.activeCategory = "";
+  renderProgramCards();
+  $("catBlock").classList.remove("hidden");
+  $("exBlock").classList.add("hidden");
+  renderCategoryCards();
+}
+
+function renderCategoryCards() {
+  const root = $("categoryCards");
+  root.innerHTML = GYM_CATEGORIES.map((cat) =>
+    `<button class="gym-sel-card ${cat === state.activeCategory ? "on" : ""}" data-cat="${esc(cat)}">${esc(cat)}</button>`
+  ).join("");
+  root.querySelectorAll("[data-cat]").forEach((btn) => {
+    btn.addEventListener("click", () => selectCategory(btn.dataset.cat));
+  });
+}
+
+async function selectCategory(cat) {
+  state.activeCategory = cat;
+  renderCategoryCards();
+  $("exBlock").classList.remove("hidden");
+  $("exHeading").textContent = `${state.activeProgram} — ${state.activeCategory}`;
+  await loadExercises();
+}
+
+async function loadExercises() {
+  try {
+    const { exercises } = await apiGet("getExercises", { program: state.activeProgram, category: state.activeCategory });
+    state.exercises = exercises;
+    renderExerciseList();
+  } catch (err) {
+    toast("تعذر تحميل التمارين");
+  }
+}
+
+function renderExerciseList() {
+  const root = $("exList");
+  $("saveAsTemplateBtn").classList.toggle("hidden", !state.exercises.length);
+  if (!state.exercises.length) { root.innerHTML = '<div class="empty">لا توجد تمارين مضافة حتى الآن</div>'; return; }
+  root.innerHTML = state.exercises.map((ex) => `
+    <div class="gym-ex-card">
+      <div class="gym-ex-head">
+        <div class="ex-icon-badge">${iconSvgFor(ex.IconKey)}</div>
+        <div class="gym-ex-texts">
+          <span class="gym-ex-name">${esc(ex.ExerciseName)}</span>
+          ${ex.ExerciseType ? `<span class="gym-ex-meta accent">${esc(ex.ExerciseType)}</span>` : ""}
+        </div>
+      </div>
+      ${ex.ImageUrl ? `<img class="gym-ex-photo" src="${esc(ex.ImageUrl)}" alt="${esc(ex.ExerciseName)}" loading="lazy">` : ""}
+      ${ex.DurationOrReps ? `<span class="gym-ex-meta">${esc(ex.DurationOrReps)}</span>` : ""}
+      ${ex.Notes ? `<span class="gym-ex-meta">${esc(ex.Notes)}</span>` : ""}
+      ${ex.VideoUrl ? `<a class="gym-ex-video" href="${esc(ex.VideoUrl)}" target="_blank" rel="noopener">▶ مشاهدة الفيديو</a>` : ""}
+      ${youtubeIdFor(ex)
+        ? `<button class="ghostbtn" data-yt="${esc(youtubeIdFor(ex))}" type="button">▶ شاهد فيديو التمرين</button>`
+        : `<a class="gym-ex-video" href="${esc(musclewikiLink(ex))}" target="_blank" rel="noopener">🔗 شاهد الأداء على MuscleWiki</a>`}
+      <div class="gym-ex-actions">
+        <button class="ghostbtn" data-edit="${esc(ex.ID)}" type="button">تعديل</button>
+        <button class="ghostbtn" data-del="${esc(ex.ID)}" type="button">حذف</button>
+      </div>
+    </div>`).join("");
+  root.querySelectorAll("[data-yt]").forEach((btn) => btn.addEventListener("click", () => openVideoModal(btn.dataset.yt)));
+  root.querySelectorAll("[data-edit]").forEach((btn) => btn.addEventListener("click", () => openEditExercise(btn.dataset.edit)));
+  root.querySelectorAll("[data-del]").forEach((btn) => btn.addEventListener("click", () => deleteExercise(btn.dataset.del)));
+}
+
+$("saveNewProgramBtn").addEventListener("click", async () => {
+  const name = $("newProgramName").value.trim();
+  if (!name) return ($("addProgramMsg").textContent = "اكتب اسم البرنامج");
+  try {
+    const r = await apiPostAuth("addProgram", { name });
+    if (!r.ok) return ($("addProgramMsg").textContent = r.message || "تعذر حفظ البرنامج");
+    closeModal("modalAddProgram");
+    toast("تم إضافة البرنامج");
+    await loadTrainingView();
+  } catch (err) {
+    $("addProgramMsg").textContent = "تعذر الاتصال بالخادم";
+  }
+});
+
+$("addExBtn").addEventListener("click", () => {
+  if (!state.activeProgram || !state.activeCategory) return;
+  state.pickerMuscle = "";
+  state.bodyView = "FRONT";
+  renderMusclePicker();
+  openModal("modalExercisePicker");
+});
+
+/** يحوّل معرّف العضلة من مكتبة body-muscles إلى مجموعتنا الخاصة بالتمارين. */
+function muscleIdToGroup(id) {
+  if (id.startsWith("gluteus")) return "glutes";
+  if (id.startsWith("quads") || id.startsWith("hamstrings") || id.startsWith("adductors") ||
+      id.startsWith("tibialis") || id.startsWith("calves") || id.startsWith("knee") || id.startsWith("hip-flexor")) return "legs";
+  if (id.startsWith("chest")) return "chest";
+  if (id.startsWith("lats") || id === "spine" || id.startsWith("lower-back") || id.startsWith("traps")) return "back";
+  if (id.startsWith("shoulder") || id.startsWith("deltoid")) return "shoulders";
+  if (id.startsWith("biceps")) return "biceps";
+  if (id.startsWith("triceps")) return "triceps";
+  if (id.startsWith("forearm")) return "forearm";
+  return "";
+}
+
+/* الخطوة 1: اختيار العضلة برسم جسم تفاعلي (زي MuscleWiki) */
+function renderMusclePicker() {
+  $("pickerBackBtn").classList.add("hidden");
+  $("pickerTitle").textContent = "اختر العضلة";
+  $("pickerSubtitle").textContent = "اضغط على العضلة بالرسم، وبعدها اختر التمرين المناسب";
+  $("pickerGalleryEl").innerHTML = "";
+  $("pickerGalleryEl").classList.add("hidden");
+
+  if (!window.BodyMuscles) {
+    /* خطة بديلة لو ما انحمّلت المكتبة (بدون إنترنت مثلاً): كروت نصية بسيطة */
+    $("pickerBodyWrap").classList.add("hidden");
+    $("pickerGalleryEl").classList.remove("hidden");
+    $("pickerGalleryEl").innerHTML = `
+      <div class="picker-grid">
+        ${MUSCLE_GROUPS.map((m) => `
+          <button class="picker-card" data-muscle="${esc(m.key)}" type="button">
+            <div class="ex-icon-badge">${iconSvgRaw(m.icon)}</div>
+            <span>${esc(m.name)}</span>
+          </button>`).join("")}
+      </div>`;
+    $("pickerGalleryEl").querySelectorAll("[data-muscle]").forEach((btn) => {
+      btn.addEventListener("click", () => { state.pickerMuscle = btn.dataset.muscle; renderExercisePickerStep(); });
+    });
+    return;
+  }
+
+  $("pickerBodyWrap").classList.remove("hidden");
+  $("bodyViewFrontBtn").classList.toggle("on", state.bodyView === "FRONT");
+  $("bodyViewBackBtn").classList.toggle("on", state.bodyView === "BACK");
+
+  const onMuscleClick = (id) => {
+    const group = muscleIdToGroup(id);
+    if (!group) { toast("ما فيه تمارين لهذي العضلة بعد"); return; }
+    state.pickerMuscle = group;
+    renderExercisePickerStep();
+  };
+
+  if (!state.bodyChart) {
+    state.bodyChart = new BodyMuscles.BodyChart($("pickerBodyMapEl"), {
+      view: BodyMuscles.ViewSide[state.bodyView],
+      bodyState: {},
+      onMuscleClick,
+    });
+  } else {
+    state.bodyChart.update({ view: BodyMuscles.ViewSide[state.bodyView], bodyState: {} });
+  }
+}
+
+$("bodyViewFrontBtn").addEventListener("click", () => {
+  state.bodyView = "FRONT";
+  $("bodyViewFrontBtn").classList.add("on");
+  $("bodyViewBackBtn").classList.remove("on");
+  if (state.bodyChart) state.bodyChart.update({ view: BodyMuscles.ViewSide.FRONT });
+});
+
+$("bodyViewBackBtn").addEventListener("click", () => {
+  state.bodyView = "BACK";
+  $("bodyViewBackBtn").classList.add("on");
+  $("bodyViewFrontBtn").classList.remove("on");
+  if (state.bodyChart) state.bodyChart.update({ view: BodyMuscles.ViewSide.BACK });
+});
+
+/* الخطوة 2: تمارين العضلة المختارة */
+function renderExercisePickerStep() {
+  const muscle = MUSCLE_GROUPS.find((m) => m.key === state.pickerMuscle);
+  $("pickerBackBtn").classList.remove("hidden");
+  $("pickerTitle").textContent = `تمارين ${muscle ? muscle.name : ""}`;
+  $("pickerSubtitle").textContent = "اضغط على التمرين المناسب";
+  $("pickerBodyWrap").classList.add("hidden");
+  $("pickerGalleryEl").classList.remove("hidden");
+  const root = $("pickerGalleryEl");
+  const list = EXERCISE_CATALOG.filter((c) => c.muscle === state.pickerMuscle);
+  root.innerHTML = `
+    <div class="picker-grid">
+      ${list.map((c) => `
+        <button class="picker-card" data-catalog="${esc(c.key)}" type="button">
+          <div class="ex-icon-badge">${iconSvgFor(c.key)}</div>
+          <span>${esc(c.name)}</span>
+        </button>`).join("")}
+    </div>`;
+  root.querySelectorAll("[data-catalog]").forEach((btn) => {
+    btn.addEventListener("click", () => openAddExerciseForm(btn.dataset.catalog));
+  });
+}
+
+$("pickerBackBtn").addEventListener("click", () => {
+  state.pickerMuscle = "";
+  renderMusclePicker();
+});
+
+$("pickerManualBtn").addEventListener("click", () => openAddExerciseForm(""));
+
+function openAddExerciseForm(catalogKey) {
+  const entry = EXERCISE_CATALOG.find((c) => c.key === catalogKey);
+  state.pendingIconKey = catalogKey || "";
+  state.pendingImageBase64 = "";
+  closeModal("modalExercisePicker");
+  $("exName").value = entry ? entry.name : ""; $("exType").value = ""; $("exDuration").value = entry && entry.defaultDuration ? entry.defaultDuration : "";
+  $("exNotes").value = entry && entry.defaultNotes ? entry.defaultNotes : ""; $("exVideo").value = ""; $("addExerciseMsg").textContent = "";
+  $("exIconKey").value = state.pendingIconKey;
+  $("exImageFile").value = ""; $("exImagePreview").classList.add("hidden"); $("exImagePreview").src = "";
+  $("exCategoryLabel").textContent = `${state.activeProgram} — ${state.activeCategory}`;
+  openModal("modalAddExercise");
+}
+
+$("saveExerciseBtn").addEventListener("click", async () => {
+  const name = $("exName").value.trim();
+  const type = $("exType").value.trim();
+  if (!name || !type) return ($("addExerciseMsg").textContent = "اكتب اسم التمرين ونوعه");
+  const btn = $("saveExerciseBtn");
+  btn.disabled = true;
+  try {
+    const imageUrl = await uploadImageIfPending(state.pendingImageBase64);
+    const r = await apiPostAuth("addExercise", {
+      program: state.activeProgram, category: state.activeCategory,
+      exerciseName: name, exerciseType: type,
+      durationOrReps: $("exDuration").value.trim(),
+      notes: $("exNotes").value.trim(),
+      videoUrl: $("exVideo").value.trim(),
+      coachName: state.coach ? state.coach.name : "",
+      iconKey: $("exIconKey").value,
+      imageUrl: imageUrl,
+    });
+    if (!r.ok) return ($("addExerciseMsg").textContent = r.message || "تعذر حفظ التمرين");
+    closeModal("modalAddExercise");
+    toast("تم حفظ التمرين");
+    await loadExercises();
+  } catch (err) {
+    $("addExerciseMsg").textContent = "تعذر الاتصال بالخادم";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+function openEditExercise(id) {
+  const ex = state.exercises.find((e) => e.ID === id);
+  if (!ex) return;
+  state.editPendingImageBase64 = "";
+  $("editExId").value = ex.ID;
+  $("editExIconKey").value = ex.IconKey || "";
+  $("editExImageUrl").value = ex.ImageUrl || "";
+  $("editExName").value = ex.ExerciseName || "";
+  $("editExType").value = ex.ExerciseType || "";
+  $("editExDuration").value = ex.DurationOrReps || "";
+  $("editExNotes").value = ex.Notes || "";
+  $("editExVideo").value = ex.VideoUrl || "";
+  $("editExImageFile").value = "";
+  if (ex.ImageUrl) { $("editExImagePreview").src = ex.ImageUrl; $("editExImagePreview").classList.remove("hidden"); }
+  else { $("editExImagePreview").classList.add("hidden"); $("editExImagePreview").src = ""; }
+  $("editExerciseMsg").textContent = "";
+  openModal("modalEditExercise");
+}
+
+$("saveEditExerciseBtn").addEventListener("click", async () => {
+  const id = $("editExId").value;
+  const name = $("editExName").value.trim();
+  const type = $("editExType").value.trim();
+  if (!id || !name || !type) return ($("editExerciseMsg").textContent = "اكتب اسم التمرين ونوعه");
+  const btn = $("saveEditExerciseBtn");
+  btn.disabled = true;
+  try {
+    const newImageUrl = await uploadImageIfPending(state.editPendingImageBase64);
+    const imageUrl = newImageUrl || $("editExImageUrl").value;
+    const r = await apiPostAuth("updateExercise", {
+      id, exerciseName: name, exerciseType: type,
+      durationOrReps: $("editExDuration").value.trim(),
+      notes: $("editExNotes").value.trim(),
+      videoUrl: $("editExVideo").value.trim(),
+      iconKey: $("editExIconKey").value,
+      imageUrl: imageUrl,
+    });
+    if (!r.ok) return ($("editExerciseMsg").textContent = r.message || "تعذر التحديث");
+    closeModal("modalEditExercise");
+    toast("تم تحديث التمرين");
+    await loadExercises();
+  } catch (err) {
+    $("editExerciseMsg").textContent = "تعذر الاتصال بالخادم";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+async function deleteExercise(id) {
+  if (!confirm("هل تريد حذف هذا التمرين؟")) return;
+  try {
+    const r = await apiPostAuth("deleteExercise", { id });
+    if (!r.ok) return toast(r.message || "تعذر حذف التمرين");
+    toast("تم حذف التمرين");
+    await loadExercises();
+  } catch (err) {
+    toast("تعذر حذف التمرين");
+  }
+}
+
+$("fromTemplateBtn").addEventListener("click", async () => {
+  openModal("modalTemplates");
+  $("templatesListEl").innerHTML = '<div class="empty">جاري التحميل...</div>';
+  try {
+    const { templates } = await apiGet("getTemplates", {});
+    state.templates = templates;
+    renderTemplatesList();
+  } catch (err) {
+    $("templatesListEl").innerHTML = '<div class="empty">تعذر تحميل القوالب</div>';
+  }
+});
+
+function renderTemplatesList() {
+  const root = $("templatesListEl");
+  if (!state.templates.length) { root.innerHTML = '<div class="empty">لا توجد قوالب محفوظة حتى الآن</div>'; return; }
+  root.innerHTML = state.templates.map((t) => `
+    <div class="template-card">
+      <div class="ti"><b>${esc(t.title)}</b><small>${(t.exercises || []).length} تمارين</small></div>
+      <button class="btn" data-apply="${esc(t.id)}" type="button">تطبيق</button>
+    </div>`).join("");
+  root.querySelectorAll("[data-apply]").forEach((btn) => btn.addEventListener("click", () => applyTemplate(btn.dataset.apply)));
+}
+
+async function applyTemplate(id) {
+  try {
+    const r = await apiPostAuth("applyTemplate", {
+      templateId: id, program: state.activeProgram, category: state.activeCategory,
+      coachName: state.coach ? state.coach.name : "",
+    });
+    if (!r.ok) return toast(r.message || "تعذر تطبيق القالب");
+    closeModal("modalTemplates");
+    toast(`تم إضافة ${(r.exercises || []).length} تمارين من القالب`);
+    await loadExercises();
+  } catch (err) {
+    toast("تعذر تطبيق القالب");
+  }
+}
+
+$("saveAsTemplateBtn").addEventListener("click", () => {
+  if (!state.exercises.length) return;
+  $("saveTemplateName").value = ""; $("saveTemplateMsg").textContent = "";
+  openModal("modalSaveTemplate");
+});
+
+$("confirmSaveTemplateBtn").addEventListener("click", async () => {
+  const title = $("saveTemplateName").value.trim();
+  if (!title) return ($("saveTemplateMsg").textContent = "اكتب اسم القالب");
+  try {
+    const exercises = state.exercises.map(({ ExerciseName, ExerciseType, DurationOrReps, Notes, VideoUrl, IconKey }) => ({
+      exerciseName: ExerciseName, exerciseType: ExerciseType, durationOrReps: DurationOrReps, notes: Notes, videoUrl: VideoUrl, iconKey: IconKey,
+    }));
+    const r = await apiPostAuth("addTemplate", { title, exercises });
+    if (!r.ok) return ($("saveTemplateMsg").textContent = r.message || "تعذر حفظ القالب");
+    closeModal("modalSaveTemplate");
+    toast("تم حفظ القالب بنجاح");
+  } catch (err) {
+    $("saveTemplateMsg").textContent = "تعذر الاتصال بالخادم";
+  }
+});
+
+/* ===== لوحة اللاعب ===== */
+async function loadPlayerView() {
+  state.playerActiveProgram = ""; state.playerActiveCategory = "";
+  $("playerCatBlock").classList.add("hidden");
+  $("playerExList").innerHTML = "";
+  try {
+    const { programs } = await apiGet("getPrograms", {});
+    state.programs = programs;
+    renderPlayerProgramCards();
+  } catch (err) {
+    toast("تعذر تحميل البرامج");
+  }
+}
+
+function renderPlayerProgramCards() {
+  const root = $("playerProgramCards");
+  if (!state.programs.length) { root.innerHTML = '<div class="empty">لا توجد برامج متاحة</div>'; return; }
+  root.innerHTML = state.programs.map((p) =>
+    `<button class="gym-sel-card ${p.Name === state.playerActiveProgram ? "on" : ""}" data-prog="${esc(p.Name)}">${esc(p.Name)}</button>`
+  ).join("");
+  root.querySelectorAll("[data-prog]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.playerActiveProgram = btn.dataset.prog;
+      state.playerActiveCategory = "";
+      renderPlayerProgramCards();
+      $("playerCatBlock").classList.remove("hidden");
+      $("playerExList").innerHTML = "";
+      renderPlayerCategoryCards();
+    });
+  });
+}
+
+function renderPlayerCategoryCards() {
+  const root = $("playerCategoryCards");
+  root.innerHTML = GYM_CATEGORIES.map((cat) =>
+    `<button class="gym-sel-card ${cat === state.playerActiveCategory ? "on" : ""}" data-cat="${esc(cat)}">${esc(cat)}</button>`
+  ).join("");
+  root.querySelectorAll("[data-cat]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      state.playerActiveCategory = btn.dataset.cat;
+      renderPlayerCategoryCards();
+      const listRoot = $("playerExList");
+      listRoot.innerHTML = '<div class="empty">جاري التحميل...</div>';
+      try {
+        const { exercises } = await apiGet("getExercises", { program: state.playerActiveProgram, category: state.playerActiveCategory });
+        if (!exercises.length) { listRoot.innerHTML = '<div class="empty">لا توجد تمارين مضافة لهذه الفئة حتى الآن</div>'; return; }
+        listRoot.innerHTML = exercises.map((ex) => `
+          <div class="gym-ex-card">
+            <div class="gym-ex-head">
+              <div class="ex-icon-badge">${iconSvgFor(ex.IconKey)}</div>
+              <div class="gym-ex-texts">
+                <span class="gym-ex-name">${esc(ex.ExerciseName)}</span>
+                ${ex.ExerciseType ? `<span class="gym-ex-meta accent">${esc(ex.ExerciseType)}</span>` : ""}
+              </div>
+            </div>
+            ${ex.ImageUrl ? `<img class="gym-ex-photo" src="${esc(ex.ImageUrl)}" alt="${esc(ex.ExerciseName)}" loading="lazy">` : ""}
+            ${ex.DurationOrReps ? `<span class="gym-ex-meta">${esc(ex.DurationOrReps)}</span>` : ""}
+            ${ex.Notes ? `<span class="gym-ex-meta">${esc(ex.Notes)}</span>` : ""}
+            ${ex.VideoUrl ? `<a class="gym-ex-video" href="${esc(ex.VideoUrl)}" target="_blank" rel="noopener">▶ مشاهدة الفيديو</a>` : ""}
+            ${youtubeIdFor(ex)
+              ? `<button class="ghostbtn" data-yt="${esc(youtubeIdFor(ex))}" type="button">▶ شاهد فيديو التمرين</button>`
+              : `<a class="gym-ex-video" href="${esc(musclewikiLink(ex))}" target="_blank" rel="noopener">🔗 شاهد الأداء على MuscleWiki</a>`}
+          </div>`).join("");
+        listRoot.querySelectorAll("[data-yt]").forEach((btn) => btn.addEventListener("click", () => openVideoModal(btn.dataset.yt)));
+      } catch (err) {
+        listRoot.innerHTML = '<div class="empty">تعذر تحميل التمارين</div>';
+      }
+    });
+  });
+}
+
+/* ===== استعادة الجلسة عند تحديث الصفحة ===== */
+(function restoreSession() {
+  const savedCoach = sessionStorage.getItem("gymCoach");
+  const savedPlayer = sessionStorage.getItem("gymPlayer");
+  if (savedCoach) {
+    try { state.coach = JSON.parse(savedCoach); } catch (e) { state.coach = null; }
+    if (state.coach) {
+      $("coachNameLbl").textContent = state.coach.name;
+      showView("viewTraining");
+      loadTrainingView();
+    }
+  } else if (savedPlayer) {
+    try { state.player = JSON.parse(savedPlayer); } catch (e) { state.player = null; }
+    if (state.player) {
+      $("playerNameLbl").textContent = `مرحباً، ${state.player.name}`;
+      showView("viewPlayer");
+      loadPlayerView();
+    }
+  }
+})();
+</script>
+</body>
+</html>

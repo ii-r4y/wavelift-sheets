@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Wave Lift - تطبيق كامل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wavelift-app.css?v=94">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b6dff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="إدارة النادي">
+<link rel="apple-touch-icon" href="assets/optimized/pwa-icon-192-v49.png">
+</head>
+<body>
+  <script>
+    // تنظيف كاش قديم من نسخ سابقة (مرة واحدة)
+    if ('caches' in window) {
+      caches.keys().then(function (keys) {
+        keys.forEach(function (key) {
+          if (key.indexOf('wave-lift-pwa') === 0) caches.delete(key);
+        });
+      }).catch(function () {});
+    }
+    // تسجيل Service Worker (مطلوب للتثبيت كتطبيق) — network-first بلا محتوى قديم
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+      });
+    }
+  </script>
+  <div id="stage">
+    <div class="phone">
+      <div class="screen">
+       <div class="app" id="app">
+
+
+        <div class="stack">
+
+          <!-- ============ HOME ============ -->
+          <div class="view active" id="home" data-screen-label="الرئيسية">
+            <div class="home">
+              <div class="scroll">
+                <div class="topbar">
+                  <div class="logo" aria-label="نادي الهلال">
+                    <img src="assets/optimized/hilal-mark-v49.webp" alt="شعار نادي الهلال" />
+                  </div>
+                  <button class="menu-btn" aria-label="القائمة"><span></span><span></span><span></span></button>
+                </div>
+                <p class="eyebrow">ألعاب نادي الهلال</p>
+                <h1>ألعاب الهلال المختلفة</h1>
+                <p class="sub">اختر الرياضة ثم انتقل لمسار المدرب أو اللاعب</p>
+                <div class="grid">
+                  <div class="sport" data-en="Weightlifting" data-ar="رفع الأثقال" data-loaded="1" style="--img:url('assets/optimized/sport-weightlifting.webp')">
+                    <div class="media t-weight"><div class="deco"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10"/><path d="M2.5 10v4M21.5 10v4"/><path d="M9 12h6"/></svg></div>
+                    <div class="body"><div class="en">Weightlifting</div><div class="ar">رفع الأثقال</div><span class="count"><span class="dot"></span>59 لاعب</span></div>
+                  </div>
+                  <div class="sport" data-en="Weightlifting-Women" data-ar="رفع الأثقال-السيدات" data-loaded="1" style="--img:url('assets/optimized/sport-weightlifting-women.jpg')">
+                    <div class="media t-weight"><div class="deco"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10"/><path d="M2.5 10v4M21.5 10v4"/><path d="M9 12h6"/></svg></div>
+                    <div class="body"><div class="en">Weightlifting-Women</div><div class="ar">رفع الأثقال-السيدات</div><span class="count"><span class="dot"></span>12 لاعب</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="backdrop" id="backdrop"></div>
+
+            <div class="sheet" id="sheet">
+              <div class="grab"></div>
+              <div class="sheet-head">
+                <div class="sheet-ico" id="sheetIco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10"/><path d="M2.5 10v4M21.5 10v4"/><path d="M9 12h6"/></svg></div>
+                <div class="ht"><b id="sheetEn">Weightlifting</b><small id="sheetAr">رفع الأثقال</small></div>
+                <button class="sheet-x" id="closeSheet" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              </div>
+
+              <div class="panel active" data-panel="chooser">
+                <div class="choose-lbl">اختر طريقة الدخول</div>
+                <div class="opts">
+                  <div class="opt primary" data-go="player">
+                    <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+                    <div class="ot"><b>دخول اللاعب</b><small>برمز من المدرب</small></div>
+                    <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+                  </div>
+                  <div class="opt ghost" data-go="coach">
+                    <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                    <div class="ot"><b>دخول المدرب</b><small>إدارة اللاعبين والجداول</small></div>
+                    <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel" data-panel="playerlogin">
+                <button class="sheet-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>اختيار المسار</button>
+                <div class="form-title">دخول اللاعب</div>
+                <div class="form-sub">أدخل رمز الدخول للوصول إلى مسارك التدريبي</div>
+                <div class="field"><label for="code">رمز الدخول</label><input id="code" class="input code" type="text" placeholder="A7-3K-L9" autocomplete="off"></div>
+                <div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>ادخل الرمز الذي أعطاك إياه المدرب</div>
+                <button class="btn" data-login="player">دخول<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+              </div>
+
+              <div class="panel" data-panel="coachlogin">
+                <button class="sheet-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>اختيار المسار</button>
+                <div class="form-title">دخول المدرب</div>
+                <div class="form-sub">سجّل دخولك لإدارة اللاعبين والجداول التدريبية</div>
+                <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" class="input" type="email" placeholder="name@wavelift.com" autocomplete="username"></div>
+                <div class="field"><label for="pass">كلمة المرور</label>
+                  <div class="pwd"><input id="pass" class="input" type="password" placeholder="••••••••" autocomplete="current-password">
+                    <button class="eye" type="button" aria-label="إظهار" onclick="var i=this.parentNode.querySelector('input');i.type=i.type==='password'?'text':'password';"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                  </div>
+                  <a class="forgot" href="#" onclick="return false">نسيت كلمة المرور؟</a>
+                </div>
+                <button class="btn" data-login="coach">تسجيل الدخول<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ PLAYER DASHBOARD ============ -->
+          <div class="view" id="player" data-screen-label="لوحة اللاعب">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">لوحة اللاعب</span>
+              <span class="tag">رفع الأثقال</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>لوحة اللاعب</h2><p>جدول التمارين الأسبوعية</p></div>
+              <div class="page-body" style="padding-bottom:30px">
+                <div class="pday empty"><b>لا توجد بيانات حالياً</b><span>لا توجد تمارين أو جدول أسبوعي حالياً</span></div>
+                <div class="pday empty" style="display:none"><b></b><span></span></div>
+                <div class="pday empty" style="display:none"><b></b><span></span></div>
+                <div class="pday empty" style="display:none"><b></b><span></span></div>
+                <div class="pday empty" style="display:none"><b></b><span></span></div>
+                <div class="pday empty" style="display:none"><b></b><span></span></div>
+                <div class="pday empty" style="display:none"><b></b><span></span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ COACH DASHBOARD ============ -->
+          <div class="view" id="coach" data-screen-label="لوحة التحكم">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">Dashboard</span>
+              <button class="reload-btn" data-coach-reload aria-label="تحميل أحدث البيانات"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 2.64 6.36"/><path d="M3 21v-6h6"/></svg><span>تحميل</span></button>
+              <span class="tag">رفع الأثقال</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>لوحة التحكم</h2><p>ملخص سريع وتحكم أساسي للمدرب</p></div>
+              <div class="page-body">
+                <div class="scard">
+                  <div class="scard-head"><div class="lt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><h3>ملخص اليوم</h3></div><small>--</small></div>
+                  <div class="tiles tiles-3">
+                    <div class="tile"><div class="tl">إجمالي اللاعبين</div><div class="tv v-blue">0</div><div class="ts">لاعب</div></div>
+                    <div class="tile"><div class="tl">الحاضرون اليوم</div><div class="tv v-green">0</div><div class="ts">حضور مسجّل</div></div>
+                    <div class="tile"><div class="tl">نسبة الحضور</div><div class="tv v-blue">0%</div><div class="ts">من إجمالي اللاعبين</div></div>
+                  </div>
+                </div>
+
+                <div class="scard mrep" data-acc>
+                  <div class="scard-head"><div class="lt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 11h16"/></svg><h3>التقرير الشهري</h3></div><div class="mrep-actions"><button type="button" class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2s-1.1.2-3.6-.9-3.9-3.5-4-3.7-1-1.3-1-2.5.6-1.8.9-2 .5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7s.7 1.2 1.5 1.9c1 .9 1.8 1.1 2.1 1.3s.4 0 .6-.1l.8-1c.2-.3.4-.2.7-.1l2 .9c.2.1.4.2.4.3s0 .8-.2 1.2Z"/></svg>مشاركة</button><button class="ah-chev" data-acc-toggle aria-label="عرض تفاصيل التقرير"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div></div>
+                  <div class="mrep-body">
+                    <div class="selrow">
+                      <div class="sel" data-mrep-year="1">2026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+                      <div class="sel" data-mrep-month="1">يونيو<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+                    </div>
+                    <div class="tiles tiles-3">
+                      <div class="tile"><div class="tl">إجمالي اللاعبين</div><div class="tv v-blue">0</div></div>
+                      <div class="tile"><div class="tl">الحضور</div><div class="tv v-green">0</div></div>
+                      <div class="tile"><div class="tl">التأخير</div><div class="tv v-amber">0</div></div>
+                      <div class="tile"><div class="tl">بعذر</div><div class="tv v-purple">0</div></div>
+                      <div class="tile"><div class="tl">الغياب</div><div class="tv v-red">0</div></div>
+                      <div class="tile"><div class="tl">نسبة الحضور</div><div class="tv v-blue">0%</div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="scard">
+                  <div class="scard-head"><h3>أفضل الحضور هذا الشهر</h3><span class="catbar"><span class="cc">0 لاعبين</span></span></div>
+                  <div class="rank"><div class="rn"></div><div class="ri"><b>لا توجد بيانات حالياً</b><small></small></div><div class="bar"><div class="track"><div class="fill" style="width:0%"></div></div><small></small></div><div class="pct"></div></div>
+                  <div class="rank" style="display:none"><div class="rn"></div><div class="ri"><b></b><small></small></div><div class="bar"><div class="track"><div class="fill" style="width:0%"></div></div><small></small></div><div class="pct"></div></div>
+                  <div class="rank" style="display:none"><div class="rn"></div><div class="ri"><b></b><small></small></div><div class="bar"><div class="track"><div class="fill" style="width:0%"></div></div><small></small></div><div class="pct"></div></div>
+                  <div class="rank" style="display:none"><div class="rn"></div><div class="ri"><b></b><small></small></div><div class="bar"><div class="track"><div class="fill" style="width:0%"></div></div><small></small></div><div class="pct"></div></div>
+                  <div class="rank" style="display:none"><div class="rn"></div><div class="ri"><b></b><small></small></div><div class="bar"><div class="track"><div class="fill" style="width:0%"></div></div><small></small></div><div class="pct"></div></div>
+                </div>
+
+                <div class="scard">
+                  <div class="scard-head"><h3>ملخص الفئات هذا الشهر</h3></div>
+                  <div class="cats">
+                    <div class="cat"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>لا توجد بيانات حالياً</div><div class="cg"><div><span class="k">إجمالي اللاعبين</span><span class="val">0</span></div><div><span class="k">الحضور</span><span class="val g">0</span></div></div></div>
+                    <div class="cat" style="display:none"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="cg"><div><span class="k">إجمالي اللاعبين</span><span class="val">0</span></div><div><span class="k">الحضور</span><span class="val g">0</span></div></div></div>
+                    <div class="cat" style="display:none"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="cg"><div><span class="k">إجمالي اللاعبين</span><span class="val">0</span></div><div><span class="k">الحضور</span><span class="val g">0</span></div></div></div>
+                    <div class="cat" style="display:none"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="cg"><div><span class="k">إجمالي اللاعبين</span><span class="val">0</span></div><div><span class="k">الحضور</span><span class="val g">0</span></div></div></div>
+                  </div>
+                </div>
+
+                <button class="bigbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>إضافة لاعب</button>
+              </div>
+            </div>
+            <nav class="bnav" data-nav-for="coach"></nav>
+          </div>
+
+          <!-- ============ ATTENDANCE (التحضير) ============ -->
+          <div class="view" id="attendance" data-screen-label="التحضير">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">الحضور والغياب</span>
+              <span class="tag">تشغيل يومي</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>الحضور والغياب</h2></div>
+              <div class="page-body">
+                <div class="daysrow">
+                  <div class="daychip"><div class="dn">السبت</div><div class="dd">13</div></div>
+                  <div class="daychip"><div class="dn">الأحد</div><div class="dd">14</div></div>
+                  <div class="daychip"><div class="dn">الاثنين</div><div class="dd">15</div></div>
+                  <div class="daychip on"><div class="dn">الثلاثاء</div><div class="dd">16</div></div>
+                  <div class="daychip"><div class="dn">الأربعاء</div><div class="dd">17</div></div>
+                  <div class="daychip"><div class="dn">الخميس</div><div class="dd">18</div></div>
+                  <div class="daychip"><div class="dn">الجمعة</div><div class="dd">19</div></div>
+                </div>
+                <div class="att3">
+                  <div class="tile"><div class="tl">حاضر</div><div class="tv v-green">0</div></div>
+                  <div class="tile"><div class="tl">غائب</div><div class="tv v-red">0</div></div>
+                  <div class="tile"><div class="tl">النسبة</div><div class="tv v-blue">0%</div></div>
+                </div>
+                <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="text" placeholder="ابحث باسم اللاعب أو رقم الهوية"></div>
+                <div class="catbar"><span class="cn">رفع الأثقال</span><span class="cc">0 لاعب</span></div>
+
+                <div class="pcard">
+                  <div class="pn">لا توجد بيانات حالياً</div>
+                  <textarea class="notef" placeholder="اكتب ملاحظة هنا..."></textarea>
+                  <div class="pstats">الحضور: <b>0</b><i>|</i> التأخير: <b>0</b><i>|</i> الأعذار: <b>0</b></div>
+                  <div class="prow">
+                    <button class="att-call" aria-label="اتصال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v2a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-3Z"/></svg></button>
+                    <button class="att-s">بعذر</button>
+                    <button class="att-s">متأخر</button>
+                    <button class="att-main">حاضر</button>
+                  </div>
+                </div>
+
+                <div class="pcard" style="display:none">
+                  <div class="pn"></div>
+                  <textarea class="notef" placeholder="اكتب ملاحظة هنا..."></textarea>
+                  <div class="pstats">الحضور: <b>3</b><i>|</i> التأخير: <b>0</b><i>|</i> الأعذار: <b>0</b></div>
+                  <div class="prow">
+                    <button class="att-call" aria-label="اتصال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v2a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-3Z"/></svg></button>
+                    <button class="att-s">بعذر</button>
+                    <button class="att-s">متأخر</button>
+                    <button class="att-main">حاضر</button>
+                  </div>
+                </div>
+
+                <div class="pcard" style="display:none">
+                  <div class="pn"></div>
+                  <textarea class="notef" placeholder="اكتب ملاحظة هنا..."></textarea>
+                  <div class="pstats">الحضور: <b>2</b><i>|</i> التأخير: <b>0</b><i>|</i> الأعذار: <b>0</b></div>
+                  <div class="prow">
+                    <button class="att-call" aria-label="اتصال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v2a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-3Z"/></svg></button>
+                    <button class="att-s">بعذر</button>
+                    <button class="att-s">متأخر</button>
+                    <button class="att-main">حاضر</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="fab" aria-label="مسح QR"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M4 12h16"/></svg></button>
+            <nav class="bnav" data-nav-for="attendance"></nav>
+          </div>
+
+          <!-- ============ WEEKLY SCHEDULE (الجدول الأسبوعي) ============ -->
+          <div class="view" id="weekly" data-screen-label="الجدول الأسبوعي">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">الجدول الأسبوعي</span>
+              <span class="tag">أسبوعي</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>الجدول الأسبوعي</h2></div>
+              <div class="page-body">
+                <div class="codecard">
+                  <span class="clbl">الكود</span>
+                  <input class="cfield" type="text" maxlength="12" autocomplete="off" placeholder="--">
+                  <button class="savechip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>حفظ</button>
+                </div>
+                <div class="daycard" data-day="">
+                  <div class="daycard-head"><b class="dc-day"></b><button class="dc-add" data-dc-add type="button" aria-label="إضافة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+                  <div class="dc-body"></div>
+                </div>
+                <button class="bigbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>حفظ الجدول</button>
+              </div>
+            </div>
+            <nav class="bnav" data-nav-for="weekly"></nav>
+
+            <!-- ===== add exercise bottom sheet ===== -->
+            <div class="wk-backdrop" id="weeklyItemBackdrop">
+              <div class="wk-sheet" id="weeklyItemSheet">
+                <div class="wk-grab"></div>
+                <div class="wk-sheet-head">
+                  <button class="wk-back" id="weeklyItemBack" style="display:none" type="button" aria-label="رجوع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+                  <h3 id="weeklyItemTitle">إضافة إلى يوم</h3>
+                  <button class="wk-close" type="button" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                </div>
+
+                <div class="wk-panel active" data-wk-panel="pick">
+                  <div class="wk-pick-row" data-wk-pick="exercise"><span class="wk-pick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10M2.5 10v4M21.5 10v4M9 12h6"/></svg></span><div><b>تمرين جديد</b><small>إضافة تمرين جديد وكتابته بنفسك</small></div></div>
+                  <div class="wk-pick-row" data-wk-pick="library"><span class="wk-pick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><div><b>اختيار من القائمة</b><small>اختر تمرين من التمارين المحفوظة</small></div></div>
+                </div>
+
+                <div class="wk-panel" data-wk-panel="exercise">
+                  <div class="wk-field"><label>اسم التمرين</label><input type="text" id="wkExName" placeholder="اكتب اسم التمرين"></div>
+                  <div class="wk-field"><label>ملاحظات / تفاصيل التمرين</label><textarea id="wkExNotes" placeholder="اكتب ملاحظاتك هنا..."></textarea></div>
+                  <div class="wk-field"><label>روابط / ملفات</label><div id="wkExLinks"></div><div class="wk-add-link" id="wkExAddLink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>إضافة رابط أو ملف</div></div>
+                  <button class="wk-save-btn" id="wkSaveExercise" type="button">إضافة التمرين</button>
+                </div>
+
+                <div class="wk-panel" data-wk-panel="library">
+                  <div class="search" style="margin-bottom:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="text" id="wkLibrarySearch" placeholder="ابحث عن تمرين"></div>
+                  <div id="wkLibraryList"></div>
+                  <div class="wk-empty-hint" id="wkLibraryEmpty" style="display:none">لا توجد تمارين محفوظة بعد — أضف تمرينًا جديدًا أول مرة ليظهر هنا</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ ADMIN DASHBOARD ============ -->
+          <div class="view" id="adminDash" data-screen-label="لوحة الإداري">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">Admin</span>
+              <span class="tag">لوحة الإداري</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>لوحة الإداري</h2><p>نظرة شاملة وسريعة على بيانات النادي والحضور</p></div>
+              <div class="page-body">
+                <div class="tiles" style="margin-bottom:16px">
+                  <div class="tile"><div class="ti-ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="tl">إجمالي اللاعبين</div><div class="tv v-blue">0</div><div class="ts">لاعب مسجل</div></div>
+                  <div class="tile"><div class="ti-ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="tl">عدد المدربين</div><div class="tv v-green">0</div><div class="ts">مدرب في النظام</div></div>
+                  <div class="tile"><div class="ti-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></div><div class="tl">عدد الرياضات</div><div class="tv v-purple">0</div><div class="ts">رياضة مسجلة</div></div>
+                  <div class="tile"><div class="ti-ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div><div class="tl">حضور اليوم</div><div class="tv v-green">0</div><div class="ts">حضور مسجل</div></div>
+                </div>
+
+                <div class="scard">
+                  <div class="scard-head"><div class="lt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><h3>ملخص الحضور اليوم</h3></div><small>--</small></div>
+                  <div class="selrow" style="margin-bottom:14px"><div class="sel">كل الرياضات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+                  <div class="tiles">
+                    <div class="tile"><div class="tl">الحاضرون</div><div class="tv v-green">0</div></div>
+                    <div class="tile"><div class="tl">المتأخرون</div><div class="tv v-amber">0</div></div>
+                    <div class="tile"><div class="tl">الغائبون</div><div class="tv v-red">0</div></div>
+                    <div class="tile"><div class="tl">غياب بعذر</div><div class="tv v-purple">0</div></div>
+                  </div>
+                  <div class="pctbox"><div class="pl">نسبة الحضور</div><div class="pv">0%</div></div>
+                </div>
+
+                <div class="duo">
+                  <!-- يمين: أفضل 10 لاعبين -->
+                  <div class="mcard" style="line-height: 1">
+                    <div class="mc-head"><div class="mt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M21 19H3"/></svg><b>أفضل 10 لاعبين حضوراً</b></div><small>حسب سجلات الحضور الفعلية</small></div>
+                    <div class="selrow" style="margin:0 0 10px"><div class="sel">كل الرياضات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+                    <div class="mc-scroll">
+                      <div class="mrank"><span class="mn"></span><div class="mi"><b>لا توجد بيانات حالياً</b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                      <div class="mrank" style="display:none"><span class="mn"></span><div class="mi"><b></b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                      <div class="mrank" style="display:none"><span class="mn"></span><div class="mi"><b></b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                      <div class="mrank" style="display:none"><span class="mn"></span><div class="mi"><b></b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                      <div class="mrank" style="display:none"><span class="mn"></span><div class="mi"><b></b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                      <div class="mrank" style="display:none"><span class="mn"></span><div class="mi"><b></b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                      <div class="mrank" style="display:none"><span class="mn"></span><div class="mi"><b></b><small></small><div class="mtrack"><div class="mfill" style="width:0%"></div></div></div><span class="mp"></span></div>
+                    </div>
+                  </div>
+
+                  <!-- يسار: التنبيهات وآخر الإضافات -->
+                  <div class="mcard">
+                    <div class="mc-head"><div class="mt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.5 21a1.8 1.8 0 0 0 3 0"/></svg><b>التنبيهات وآخر الإضافات</b></div><small>آخر اللاعبين والمدربين المضافين</small></div>
+                    <button class="mlink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>إدارة التنبيهات</button>
+                    <div class="mc-scroll">
+                      <div class="mfeed"><span class="mf-ico player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><div class="mf-info"><b>لا توجد بيانات حالياً</b><small></small><small class="mf-date"></small></div></div>
+                      <div class="mfeed" style="display:none"><span class="mf-ico player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><div class="mf-info"><b></b><small></small><small class="mf-date"></small></div></div>
+                      <div class="mfeed" style="display:none"><span class="mf-ico player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><div class="mf-info"><b></b><small></small><small class="mf-date"></small></div></div>
+                      <div class="mfeed" style="display:none"><span class="mf-ico coach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/><path d="M9 12l2 2 4-4"/></svg></span><div class="mf-info"><b></b><small></small><small class="mf-date"></small></div></div>
+                      <div class="mfeed" style="display:none"><span class="mf-ico player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><div class="mf-info"><b></b><small></small><small class="mf-date"></small></div></div>
+                      <div class="mfeed" style="display:none"><span class="mf-ico player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><div class="mf-info"><b></b><small></small><small class="mf-date"></small></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nav class="bnav admin" data-adminnav="adminDash"></nav>
+          </div>
+
+          <!-- ============ ADMIN CLUB ============ -->
+          <div class="view" id="adminClub" data-screen-label="إدارة النادي">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">Admin</span>
+              <span class="tag">إدارة النادي</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>إدارة النادي</h2><p>إدارة الرياضات والمدربين واللاعبين والبطاقات</p></div>
+              <div class="page-body">
+
+                <!-- الرياضات -->
+                <div class="acc" data-acc>
+                  <button class="acc-head" data-acc-toggle>
+                    <span class="ah-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></span>
+                    <span class="ah-txt"><b>الرياضات</b><small>لا توجد بيانات حالياً</small></span>
+                    <span class="ah-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                  </button>
+                  <div class="acc-body">
+                    <div class="adm-row"><span class="adm-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></span><div class="adm-info"><b>ألعاب القوى</b><small class="off">معطلة</small><div class="mini"><span class="chip">0 لاعب</span><span class="chip">1 مدرب</span></div></div><div class="adm-acts"><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                    <div class="adm-row"><span class="adm-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></span><div class="adm-info"><b>ريشة الطائرة</b><small class="off">معطلة</small><div class="mini"><span class="chip">0 لاعب</span><span class="chip">1 مدرب</span></div></div><div class="adm-acts"><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                    <div class="adm-row"><span class="adm-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></span><div class="adm-info"><b>كرة السلة</b><small class="off">معطلة</small><div class="mini"><span class="chip">0 لاعب</span><span class="chip">1 مدرب</span></div></div><div class="adm-acts"><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                    <div class="adm-row"><span class="adm-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></span><div class="adm-info"><b>السباحة</b><small class="on">مفعّلة</small><div class="mini"><span class="chip">1 لاعب</span><span class="chip">1 مدرب</span></div></div><div class="adm-acts"><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                  </div>
+                </div>
+
+                <!-- المدربون -->
+                <div class="acc" data-acc>
+                  <button class="acc-head" data-acc-toggle>
+                    <span class="ah-ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                    <span class="ah-txt"><b>المدربون</b><small>لا توجد بيانات حالياً</small></span>
+                    <span class="ah-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                  </button>
+                  <div class="acc-body">
+                    <div class="selrow" style="margin-bottom:6px"><div class="sel">كل الرياضات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+                    <div class="adm-row"><span class="adm-ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/></svg></span><div class="adm-info"><b>مدرب ألعاب القوى</b><small>ألعاب القوى</small><small class="mail">a@gmail.com</small></div><div class="adm-acts"><button class="ic-card" aria-label="بطاقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></button><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                    <div class="adm-row"><span class="adm-ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/></svg></span><div class="adm-info"><b>مدرب كرة السلة</b><small>كرة السلة</small><small class="mail">b@gmail.com</small></div><div class="adm-acts"><button class="ic-card" aria-label="بطاقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></button><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                    <div class="adm-row"><span class="adm-ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/></svg></span><div class="adm-info"><b>مدرب السباحة</b><small>السباحة</small><small class="mail">s@gmail.com</small></div><div class="adm-acts"><button class="ic-card" aria-label="بطاقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></button><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+                  </div>
+                </div>
+
+                <!-- البطاقات -->
+                <div class="acc" data-acc>
+                  <button class="acc-head" data-acc-toggle>
+                    <span class="ah-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></span>
+                    <span class="ah-txt"><b>البطاقات</b><small>لا توجد بيانات حالياً</small></span>
+                    <span class="ah-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                  </button>
+                  <div class="acc-body">
+                    <div class="segtabs"><button class="seg on">اللاعبون</button><button class="seg">المدربون</button></div>
+                    <div class="mini-note">0 لاعب مسجل</div>
+                    <div class="search" style="margin:10px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="text" placeholder="بحث باسم اللاعب"></div>
+                    <div class="selrow" style="margin-bottom:10px"><div class="sel">كل الرياضات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><button class="print-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5h-2M8 14h8v7H8z"/></svg>طباعة البطاقات</button></div>
+                    <div class="selrow group-row" style="margin-bottom:10px"><div class="sel">كل الفئات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+                    <div class="selallrow"><label class="selall"><input type="checkbox"><span>تحديد الكل</span><em>0 محدد</em></label><button class="reset-btn" aria-label="تصفير الحضور للمحددين"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v6h6"/></svg></button></div>
+                    <div class="card-row"><span class="cr-av c1">--</span><div class="cr-info"><b>لا توجد بيانات حالياً</b><small></small><small class="num"></small></div><div class="cr-acts"><button class="ic-card" aria-label="بطاقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></button><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button><button class="ic-print" aria-label="تحديد للطباعة"></button></div></div>
+                    <div class="card-row" style="display:none"><span class="cr-av c2">--</span><div class="cr-info"><b></b><small></small><small class="num"></small></div><div class="cr-acts"><button class="ic-card" aria-label="بطاقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></button><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button><button class="ic-print" aria-label="تحديد للطباعة"></button></div></div>
+                    <div class="card-row" style="display:none"><span class="cr-av c3">--</span><div class="cr-info"><b></b><small></small><small class="num"></small></div><div class="cr-acts"><button class="ic-card" aria-label="بطاقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></button><button class="ic-edit" aria-label="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="ic-del" aria-label="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button><button class="ic-print" aria-label="تحديد للطباعة"></button></div></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <button class="fab admin-fab" id="adminFab" aria-label="إضافة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+            <div class="fab-menu" id="adminFabMenu">
+              <button class="fab-item"><span>نشر تنبيه عام</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5Z"/></svg></button>
+              <button class="fab-item"><span>إضافة لاعب</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+              <button class="fab-item"><span>إضافة مدرب</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/></svg></button>
+              <button class="fab-item"><span>إضافة رياضة</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/></svg></button>
+            </div>
+            <nav class="bnav admin" data-adminnav="adminClub"></nav>
+          </div>
+
+          <!-- ============ ADMIN SETTINGS ============ -->
+          <div class="view" id="adminSettings" data-screen-label="الإعدادات">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">Admin</span>
+              <span class="tag">الإعدادات</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>الإعدادات</h2><p>إعدادات النظام العامة حسب كل رياضة</p></div>
+              <div class="page-body">
+                <div class="acc open" data-acc>
+                  <button class="acc-head" data-acc-toggle>
+                    <span class="ah-ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
+                    <span class="ah-txt"><b>إعدادات الحضور</b><small>حدد الرياضة ثم اضبط أوقات تسجيل حالاتها</small></span>
+                    <span class="ah-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                  </button>
+                  <div class="acc-body">
+                    <label class="fld-lbl">الرياضة</label>
+                    <div class="selrow" style="margin-bottom:14px"><div class="sel">ألعاب القوى<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+                    <div class="time-row"><span class="tr-ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M21 19H3"/></svg></span><div class="tr-txt"><b>وقت التأخير</b><small>قبله = حاضر، وبعده = متأخر (بلا حد أقصى)</small></div><div class="tr-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>--:--</span></div></div>
+                    <button class="bigbtn" style="margin-top:18px">حفظ إعدادات الحضور</button>
+                  </div>
+                </div>
+
+                <div class="scard">
+                  <div class="scard-head"><div class="lt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.3-2.5h-4l-.3 2.5a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.3 2.5h4l.3-2.5a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.5a7 7 0 0 0 .1-1Z"/></svg><h3>معلومات النظام</h3></div></div>
+                  <div class="info-row"><span class="il">إصدار النظام</span><span class="iv">Wave Lift 3.0 · v48</span></div>
+                  <div class="info-row"><span class="il">آخر تحديث</span><span class="iv">--</span></div>
+                </div>
+              </div>
+            </div>
+            <nav class="bnav admin" data-adminnav="adminSettings"></nav>
+          </div>
+
+          <!-- ============ SECURITY: التحقق من لاعب ============ -->
+          <div class="view" id="securityPage" data-screen-label="التحقق من لاعب">
+            <div class="appbar">
+              <button class="home-btn" data-nav="home" aria-label="الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></button>
+              <span class="title">التحقق من لاعب</span>
+              <span class="tag">الأمن</span>
+            </div>
+            <div class="vscroll">
+              <div class="page-head"><h2>التحقق من لاعب</h2><p>تحقق من اللاعب عبر المسح أو البحث اليدوي</p></div>
+              <div class="page-body">
+
+                <div class="scard sec-counter">
+                  <div class="sec-counter-row">
+                    <span class="sec-counter-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    <div class="sec-counter-text">
+                      <b>الموجودين داخل النادي الآن</b>
+                      <span class="sec-counter-num" id="secLiveCount">0</span>
+                    </div>
+                  </div>
+                  <div class="sec-checkin-list" id="secLiveList" style="margin-top:12px"></div>
+                </div>
+
+                <div class="sec-search-row">
+                  <div class="search sec-search-input">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <input type="text" id="secSearchInput" placeholder="ابحث بالاسم الكامل أو رقم الهوية">
+                  </div>
+                  <button class="sec-search-btn" id="secSearchBtn">بحث</button>
+                </div>
+
+                <div class="sec-result-card" id="secResultCard" style="display:none"></div>
+
+                <div class="scard">
+                  <div class="scard-head"><h3>مسح الكود</h3></div>
+                  <div class="sec-scanner-box" id="secScannerArea">
+                    <div id="secScannerCamera"></div>
+                    <div class="sec-scan-placeholder" id="secScanPlaceholder">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg>
+                      <span>اضغط تشغيل الكاميرا للبدء</span>
+                    </div>
+                  </div>
+                  <div class="sec-scan-actions">
+                    <button class="btn" id="secStartCamBtn">تشغيل الكاميرا</button>
+                    <button class="ghostbtn" id="secStopCamBtn" style="display:none">إيقاف الكاميرا</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="app-cover" id="appCover"></div>
+       </div><!-- /.app -->
+
+       <!-- ===== right-side drawer ===== -->
+       <aside class="sidebar" id="sidebar">
+         <div class="sb-logo">
+           <img src="assets/optimized/hilal-mark-v49.webp" alt="شعار نادي الهلال" />
+           <span>الهلال</span>
+         </div>
+         <nav class="sb-nav">
+           <button class="sb-item" data-sb="admin">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V5l7-3Z"/><circle cx="12" cy="10" r="2.2"/><path d="M8.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4"/></svg>
+             <span>الإداري</span>
+           </button>
+           <button class="sb-item" data-sb="verify">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M4 12h16"/></svg>
+             <span>التحقق من لاعب</span>
+           </button>
+           <button class="sb-item" data-sb="support">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4" height="7" rx="2"/><rect x="17.5" y="13" width="4" height="7" rx="2"/><path d="M20 20a4 4 0 0 1-4 3h-2"/></svg>
+             <span>الدعم الفني</span>
+           </button>
+           <button class="sb-item" data-sb="about">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+             <span>عن التطبيق</span>
+           </button>
+           <button class="sb-item" data-sb="privacy">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+             <span>الخصوصية</span>
+           </button>
+           <button class="sb-item" data-sb="language">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21M12 3c-2.5 2.6-3.8 5.6-3.8 9S9.5 18.4 12 21"/></svg>
+             <span>تغيير اللغة</span>
+           </button>
+           <button class="sb-item" data-sb="logout" style="display:none">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M21 19V5a2 2 0 0 0-2-2h-5"/></svg>
+             <span>تسجيل الخروج</span>
+           </button>
+           <button class="sb-item disabled" data-sb="ai" disabled>
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/><path d="M18 14l.8 1.9L21 17l-2.2.9L18 20l-.8-2.1L15 17l2.2-1.1L18 14Z"/></svg>
+             <span>الذكاء</span>
+             <em class="soon">قريباً</em>
+           </button>
+         </nav>
+         <div class="sb-ver">v1.2</div>
+       </aside>
+
+       <!-- ===== tech support modal ===== -->
+       <div class="modal" id="supportModal">
+         <div class="modal-card">
+           <button class="modal-x" id="supportClose" aria-label="إغلاق">&times;</button>
+           <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4" height="7" rx="2"/><rect x="17.5" y="13" width="4" height="7" rx="2"/><path d="M20 20a4 4 0 0 1-4 3h-2"/></svg></div>
+           <h3>الدعم الفني</h3>
+           <p>صف مشكلتك بإيجاز وسنتواصل معك عبر واتساب</p>
+           <textarea id="supportText" placeholder="اكتب المشكلة هنا..."></textarea>
+           <label class="attach">
+             <input type="file" accept="image/*" id="supportFile" hidden>
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8-8a3.3 3.3 0 0 1 4.7 4.7l-8 8a1.6 1.6 0 0 1-2.3-2.3l7.4-7.4"/></svg>
+             إرفاق صورة أو لقطة شاشة
+           </label>
+           <span class="attach-name" id="attachName"></span>
+           <button class="wa-send" id="supportSend"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2s-1.1.2-3.6-.9-3.9-3.5-4-3.7-1-1.3-1-2.5.6-1.8.9-2 .5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7s.7 1.2 1.5 1.9c1 .9 1.8 1.1 2.1 1.3s.4 0 .6-.1l.8-1c.2-.3.4-.2.7-.1l2 .9c.2.1.4.2.4.3s0 .8-.2 1.2Z"/></svg>إرسال عبر واتساب</button>
+         </div>
+       </div>
+
+       <!-- ===== information modal ===== -->
+       <div class="modal" id="infoModal">
+         <div class="modal-card">
+           <button class="modal-x" id="infoClose" aria-label="إغلاق">&times;</button>
+           <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg></div>
+           <h3 id="infoTitle">عن التطبيق</h3>
+           <p id="infoText">Wave Lift منصة لإدارة الرياضات والحضور والجداول التدريبية داخل النادي.</p>
+         </div>
+       </div>
+
+       <!-- ===== admin login modal ===== -->
+       <div class="modal" id="adminModal">
+         <div class="modal-card">
+           <button class="modal-x" id="adminClose" aria-label="إغلاق">&times;</button>
+           <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V5l7-3Z"/><circle cx="12" cy="10" r="2.2"/><path d="M8.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4"/></svg></div>
+           <h3>دخول الإداري</h3>
+           <p>سجّل دخولك لإدارة النادي والإعدادات العامة</p>
+           <div class="field"><label for="admUser">اسم المستخدم</label><input id="admUser" class="input" type="text" placeholder="admin" autocomplete="username"></div>
+           <div class="field"><label for="admPass">كلمة المرور</label>
+             <div class="pwd"><input id="admPass" class="input" type="password" placeholder="••••••••" autocomplete="current-password">
+               <button class="eye" type="button" aria-label="إظهار" onclick="var i=this.parentNode.querySelector('input');i.type=i.type==='password'?'text':'password';"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+             </div>
+           </div>
+           <button class="btn" id="adminEnter">دخول لوحة الإداري<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+         </div>
+       </div>
+
+       <!-- ===== verify mode sheet (over Home, read-only) ===== -->
+       <div class="modal vmodal" id="verifyModal">
+         <div class="modal-card sheet-card">
+           <div class="grab"></div>
+           <button class="modal-x" id="verifyClose" aria-label="إغلاق">&times;</button>
+           <div class="vf-present-badge" id="vfPresentBox" title="عدد اللاعبين الموجودين داخل النادي اليوم"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span id="vfPresentCount">0</span></div>
+           <h3>التحقق من لاعب</h3>
+           <p>امسح بطاقة اللاعب للتأكد من عضويته فقط</p>
+           <div class="vf-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>وضع تحقق فقط — لا يُسجَّل حضور</div>
+           <div class="vf-result" id="vfResult"></div>
+           <div class="scanner" id="scanner">
+             <div class="scan-frame"><span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span><div class="scan-line"></div>
+               <svg class="scan-q" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg>
+             </div>
+             <p class="scan-hint" id="scanHint">جارٍ تشغيل الكاميرا — وجّهها نحو رمز QR على البطاقة</p>
+           </div>
+           <button class="bigbtn" id="scanBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M4 12h16"/></svg>مسح بطاقة أخرى</button>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ---- view router ---- */
+    var views={};
+    document.querySelectorAll('.view').forEach(function(v){views[v.id]=v;});
+    var ADMIN_GUARDED_VIEWS=['adminDash','adminClub','adminSettings'];
+    function go(id){
+      if (ADMIN_GUARDED_VIEWS.indexOf(id)!==-1 && !(window.isAdminAuthenticated && window.isAdminAuthenticated())) {
+        id='home';
+      }
+      Object.keys(views).forEach(function(k){views[k].classList.toggle('active',k===id);});
+      var sc=views[id].querySelector('.vscroll');if(sc)sc.scrollTop=0;
+    }
+
+    /* ---- bottom nav (coach area) ---- */
+    var NAV=[
+      {id:'coach',label:'الرئيسية',icon:'<path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/>'},
+      {id:'attendance',label:'التحضير',icon:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/>'},
+      {id:'weekly',label:'التمارين',icon:'<path d="M6.5 7v10M9 5v14M15 5v14M17.5 7v10M2.5 10v4M21.5 10v4M9 12h6"/>'}
+    ];
+    document.querySelectorAll('.bnav[data-nav-for]').forEach(function(nav){
+      var cur=nav.getAttribute('data-nav-for');
+      NAV.forEach(function(item){
+        var b=document.createElement('button');
+        b.className='bni'+(item.id===cur?' on':'');
+        b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+item.icon+'</svg><span>'+item.label+'</span>';
+        b.addEventListener('click',function(){go(item.id);});
+        nav.appendChild(b);
+      });
+    });
+    document.querySelectorAll('[data-nav="home"]').forEach(function(b){
+      b.addEventListener('click',function(){closeSheet();go('home');});
+    });
+
+    /* ---- bottom sheet ---- */
+    var home=document.getElementById('home');
+    var sheet=document.getElementById('sheet');
+    var backdrop=document.getElementById('backdrop');
+    var sheetEn=document.getElementById('sheetEn');
+    var sheetAr=document.getElementById('sheetAr');
+    var sheetIco=document.getElementById('sheetIco');
+    var panels=sheet.querySelectorAll('.panel');
+    var currentSport='',currentSportAr='';
+    function setPanel(name){panels.forEach(function(p){p.classList.toggle('active',p.dataset.panel===name);});}
+    function openSheet(card){
+      home.classList.add('started');
+      currentSport=card.dataset.en;currentSportAr=card.dataset.ar;
+      sheetEn.textContent=card.dataset.en;sheetAr.textContent=card.dataset.ar;
+      var ico=card.querySelector('.media svg').cloneNode(true);ico.removeAttribute('width');ico.removeAttribute('height');
+      sheetIco.innerHTML='';sheetIco.appendChild(ico);
+      setPanel('chooser');home.classList.add('sheetopen');
+    }
+    function closeSheet(){home.classList.remove('sheetopen');}
+    document.querySelectorAll('.sport').forEach(function(c){c.addEventListener('click',function(){openSheet(c);});});
+    sheet.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){setPanel(b.dataset.go==='player'?'playerlogin':'coachlogin');});});
+    sheet.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){setPanel('chooser');});});
+    document.getElementById('closeSheet').addEventListener('click',closeSheet);
+    backdrop.addEventListener('click',closeSheet);
+
+    /* ---- login -> dashboards ---- */
+    sheet.querySelectorAll('[data-login]').forEach(function(b){
+      b.addEventListener('click',function(){
+        var dest=b.dataset.login==='player'?'player':'coach';
+        closeSheet();setTimeout(function(){go(dest);},120);
+      });
+    });
+
+    /* ---- right drawer + support modal ---- */
+    var screenEl=document.querySelector('.screen');
+    function openMenu(){screenEl.classList.add('menuopen');}
+    function closeMenu(){screenEl.classList.remove('menuopen');}
+    function toggleMenu(){screenEl.classList.toggle('menuopen');}
+    document.querySelector('.menu-btn').addEventListener('click',toggleMenu);
+    document.getElementById('appCover').addEventListener('click',closeMenu);
+
+    var supportModal=document.getElementById('supportModal');
+    function openSupport(){supportModal.classList.add('show');}
+    function closeSupport(){supportModal.classList.remove('show');}
+    document.querySelectorAll('.sb-item').forEach(function(b){
+      if(b.disabled)return;
+      b.addEventListener('click',function(){
+        var k=b.dataset.sb;
+        closeMenu();
+        if(k==='support'){setTimeout(openSupport,180);}
+        else if(k==='admin'){setTimeout(openAdmin,180);}
+        else if(k==='verify'){setTimeout(openVerify,180);}
+      });
+    });
+    document.getElementById('supportClose').addEventListener('click',closeSupport);
+    document.getElementById('supportFile').addEventListener('change',function(){
+      document.getElementById('attachName').textContent=this.files&&this.files[0]?('\u0645\u0631\u0641\u0642: '+this.files[0].name):'';
+    });
+    document.getElementById('supportSend').addEventListener('click',function(){
+      var t=document.getElementById('supportText').value.trim()||'\u0644\u062f\u064a \u0627\u0633\u062a\u0641\u0633\u0627\u0631 \u0628\u062e\u0635\u0648\u0635 \u062a\u0637\u0628\u064a\u0642 Wave Lift';
+      window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
+      closeSupport();
+    });
+
+    /* ---- admin: bottom nav ---- */
+    var ANAV=[
+      {id:'adminDash',label:'الرئيسية',icon:'<path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/>'},
+      {id:'adminClub',label:'إدارة النادي',icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'},
+      {id:'adminSettings',label:'الإعدادات',icon:'<path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'}
+    ];
+    document.querySelectorAll('.bnav[data-adminnav]').forEach(function(nav){
+      var cur=nav.getAttribute('data-adminnav');
+      ANAV.forEach(function(item){
+        var b=document.createElement('button');
+        b.className='bni'+(item.id===cur?' on':'');
+        b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+item.icon+'</svg><span>'+item.label+'</span>';
+        b.addEventListener('click',function(){closeFab();go(item.id);});
+        nav.appendChild(b);
+      });
+    });
+
+    /* ---- accordions (admin club + settings) ---- */
+    document.querySelectorAll('[data-acc-toggle]').forEach(function(btn){
+      btn.addEventListener('click',function(){btn.closest('[data-acc]').classList.toggle('open');});
+    });
+
+    /* ---- admin FAB menu ---- */
+    var adminFab=document.getElementById('adminFab');
+    var adminFabMenu=document.getElementById('adminFabMenu');
+    function closeFab(){if(adminFabMenu){adminFabMenu.classList.remove('show');adminFab.classList.remove('on');}}
+    if(adminFab){
+      adminFab.addEventListener('click',function(e){e.stopPropagation();adminFabMenu.classList.toggle('show');adminFab.classList.toggle('on');});
+      document.querySelectorAll('#adminFabMenu .fab-item').forEach(function(it){it.addEventListener('click',closeFab);});
+    }
+
+    /* ---- admin segtabs (cards: players/coaches) ---- */
+    document.querySelectorAll('.segtabs').forEach(function(g){
+      g.querySelectorAll('.seg').forEach(function(s){s.addEventListener('click',function(){g.querySelectorAll('.seg').forEach(function(x){x.classList.remove('on');});s.classList.add('on');});});
+    });
+
+    /* ---- admin login (from sidebar) ---- */
+    var adminModal=document.getElementById('adminModal');
+    function openAdmin(){adminModal.classList.add('show');}
+    function closeAdmin(){adminModal.classList.remove('show');}
+    document.getElementById('adminClose').addEventListener('click',closeAdmin);
+    document.getElementById('adminEnter').addEventListener('click',function(){closeAdmin();setTimeout(function(){go('adminDash');},120);});
+
+    /* ---- verify mode (secretary, READ-ONLY: no attendance writes) ---- */
+    var verifyRoster=[
+      null /* unregistered card */
+    ];
+    var vfIdx=0;
+    var verifyModal=document.getElementById('verifyModal');
+    var vfResult=document.getElementById('vfResult');
+    function resetVerify(){if(vfResult){vfResult.className='vf-result';vfResult.innerHTML='';}verifyModal.classList.remove('has-result');}
+    function openVerify(){
+      resetVerify();
+      document.querySelector('.screen').classList.add('verifyblur');
+      verifyModal.classList.add('show');
+      clearTimeout(window.__vfAuto);
+    }
+    function closeVerify(){
+      verifyModal.classList.remove('show');
+      document.querySelector('.screen').classList.remove('verifyblur');
+      clearTimeout(window.__vfAuto);
+    }
+    function doScan(){
+      var p=verifyRoster[vfIdx % verifyRoster.length];vfIdx++;
+      verifyModal.classList.add('has-result');
+      if(p){
+        vfResult.className='vf-result show ok';
+        vfResult.innerHTML='<div class="vf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>'
+          +'<div class="vf-title">لاعب مسجّل في النادي</div>'
+          +'<div class="vf-card"><div class="vf-row"><span class="vk">الاسم</span><span class="vv">'+p.name+'</span></div>'
+          +'<div class="vf-row"><span class="vk">الرياضة</span><span class="vv">'+p.sport+'</span></div>'
+          +'<div class="vf-row"><span class="vk">الفئة</span><span class="vv">'+p.cat+'</span></div></div>';
+      }else{
+        vfResult.className='vf-result show bad';
+        vfResult.innerHTML='<div class="vf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></div>'
+          +'<div class="vf-title">البطاقة غير مسجلة في النظام</div>';
+      }
+    }
+    document.getElementById('scanBtn').addEventListener('click',doScan);
+    document.getElementById('verifyClose').addEventListener('click',closeVerify);
+
+    /* sizing is fully handled by CSS now (fluid mobile + wide desktop) */
+  </script>
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "./src/shim/firebase-app.js",
+        "firebase/auth": "./src/shim/firebase-auth.js",
+        "firebase/firestore/lite": "./src/shim/firebase-firestore-lite.js"
+      }
+    }
+  </script>
+  <script type="module" src="js/wavelift-bridge.js?v=75"></script>
+</body>
+</html>
