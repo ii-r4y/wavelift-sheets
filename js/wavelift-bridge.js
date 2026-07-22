@@ -974,7 +974,7 @@ function renderSports() {
 }
 
 const HOME_DATA_CACHE_KEY = "waveLiftHomeDataCache";
-const HOME_DATA_CACHE_MS = 5 * 60 * 1000;
+const HOME_DATA_CACHE_MS =  15 * 1000;
 
 async function loadHomeData() {
   try {

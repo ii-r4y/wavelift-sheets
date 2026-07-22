@@ -41,7 +41,7 @@ function applyCons(rows, cons) {
 // [أداء] كاش قصير + دمج الطلبات المتوازية لنفس المجموعة
 const __listCache = new Map();   // name -> {ts, rows}
 const __inflight = new Map();    // name -> Promise
-const CACHE_MS = 60000;
+const CACHE_MS = 8000;
 async function listCollection(name) {
   const c = __listCache.get(name);
   if (c && Date.now() - c.ts < CACHE_MS) return c.rows;
@@ -55,7 +55,10 @@ async function listCollection(name) {
   __inflight.set(name, p);
   return p;
 }
-function invalidate(name) { __listCache.delete(name); }
+function invalidate(name) {
+  __listCache.delete(name);
+  try { sessionStorage.removeItem("waveLiftHomeDataCache"); } catch (e) {}
+}
 
 export async function getDocs(ref) {
   let rows = await listCollection(ref.name);
