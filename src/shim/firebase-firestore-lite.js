@@ -38,34 +38,56 @@ function applyCons(rows, cons) {
   return out;
 }
 
+// [أداء] كاش قصير + دمج الطلبات المتوازية لنفس المجموعة
+const __listCache = new Map();   // name -> {ts, rows}
+const __inflight = new Map();    // name -> Promise
+const CACHE_MS = 60000;
+async function listCollection(name) {
+  const c = __listCache.get(name);
+  if (c && Date.now() - c.ts < CACHE_MS) return c.rows;
+  if (__inflight.has(name)) return __inflight.get(name);
+  const p = apiCall("list", { collection: name }).then((r) => {
+    const rows = (r && r.docs) || [];
+    __listCache.set(name, { ts: Date.now(), rows });
+    __inflight.delete(name);
+    return rows;
+  }).catch((e) => { __inflight.delete(name); throw e; });
+  __inflight.set(name, p);
+  return p;
+}
+function invalidate(name) { __listCache.delete(name); }
+
 export async function getDocs(ref) {
-  const r = await apiCall("list", { collection: ref.name });
-  let rows = (r && r.docs) || [];
+  let rows = await listCollection(ref.name);
   if (ref.__t === "query") rows = applyCons(rows, ref.cons);
   const docs = rows.map(snap);
   return { docs, empty: docs.length === 0, size: docs.length, forEach: (fn) => docs.forEach(fn) };
 }
 export async function getDoc(ref) {
-  const r = await apiCall("get", { collection: ref.name, id: ref.id });
-  const d = r && r.doc;
+  const rows = await listCollection(ref.name);
+  const d = rows.find((x) => String(x.id) === String(ref.id)) || null;
   return { id: String(ref.id), exists: () => !!d, data: () => (d ? stripId(d) : undefined) };
 }
 export async function addDoc(ref, data) {
+  invalidate(ref.name);
   const r = await apiCall("add", { collection: ref.name, data: data || {} });
   if (!r || r.ok === false) throw new Error((r && r.message) || "فشل الإضافة");
   return { id: r.id };
 }
 export async function setDoc(ref, data, opts) {
+  invalidate(ref.name);
   const r = await apiCall("set", { collection: ref.name, id: ref.id, data: data || {}, merge: !!(opts && opts.merge) });
   if (!r || r.ok === false) throw new Error((r && r.message) || "فشل الحفظ");
   return;
 }
 export async function updateDoc(ref, data) {
+  invalidate(ref.name);
   const r = await apiCall("update", { collection: ref.name, id: ref.id, data: data || {} });
   if (!r || r.ok === false) throw new Error((r && r.message) || "فشل التحديث");
   return;
 }
 export async function deleteDoc(ref) {
+  invalidate(ref.name);
   const r = await apiCall("delete", { collection: ref.name, id: ref.id });
   if (!r || r.ok === false) throw new Error((r && r.message) || "فشل الحذف");
   return;

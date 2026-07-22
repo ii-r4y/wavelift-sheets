@@ -31,6 +31,7 @@ function handle_(e, method) {
       case 'set':    out = setDoc_(body.collection, body.id, body.data, !!body.merge); break;
       case 'update': out = updateDoc_(body.collection, body.id, body.data); break;
       case 'delete': out = deleteDoc_(body.collection, body.id); break;
+      case 'bulkSet': out = bulkSet_(body.collection, body.docs, body.clear); break;
       default:       out = { ok: false, message: 'action غير مدعوم: ' + action };
     }
     return json_(out, body.callback);
@@ -215,6 +216,23 @@ function deleteDoc_(name, id) {
   if (rowNum === -1) return { ok: false, message: 'غير موجود' };
   sh.deleteRow(rowNum);
   return { ok: true, id: id };
+}
+
+function bulkSet_(name, docs, clear) {
+  docs = docs || [];
+  var sh = sheet_(name);
+  if (clear) sh.clearContents();
+  var keys = { id: 1 };
+  docs.forEach(function (d) { for (var k in d) keys[k] = 1; });
+  var h = Object.keys(keys);
+  sh.getRange(1, 1, 1, h.length).setValues([h]);
+  if (docs.length) {
+    var rows = docs.map(function (d) {
+      return h.map(function (k) { return k === 'id' ? String(d.id || '') : encode_(d[k]); });
+    });
+    sh.getRange(2, 1, rows.length, h.length).setValues(rows);
+  }
+  return { ok: true, count: docs.length };
 }
 
 /* ---------- الإخراج (JSON / JSONP) ---------- */
