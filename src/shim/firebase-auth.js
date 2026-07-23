@@ -46,6 +46,7 @@ export function updateProfile(user, data) {
 }
 export function signOut() { setUser(null); return Promise.resolve(); }
 export function sendPasswordResetEmail() {
-  // استعادة كلمة المرور تُدار يدويًا من شيت Users في هذه النسخة.
-  return Promise.resolve(true);
+  // نسخة Sheets: لا يوجد إرسال بريد — كلمات المرور تُدار من تبويب Users في الشيت.
+  const err = new Error("في هذه النسخة تُغيَّر كلمة المرور من ملف Google Sheet (تبويب Users). تواصل مع الأدمن.");
+  return Promise.reject(err);
 }

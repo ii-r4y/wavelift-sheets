@@ -41,20 +41,45 @@ function applyCons(rows, cons) {
 // [أداء] كاش قصير + دمج الطلبات المتوازية لنفس المجموعة
 const __listCache = new Map();   // name -> {ts, rows}
 const __inflight = new Map();    // name -> Promise
-const CACHE_MS = 8000;
+const CACHE_MS = 180000; // ٣ دقائق — الكتابة تبطّل الكاش فوراً
+// [__coalesce] دمج كل طلبات القوائم المتزامنة في bulkGet واحد (توفير ٢-٣ث لكل طلب)
+let __pending = null; // {names:Set, resolvers:Map, timer}
+function __flushBulk() {
+  const batch = __pending; __pending = null;
+  const names = [...batch.names];
+  apiCall("bulkGet", { collections: names }).then((r) => {
+    const cols = (r && r.collections) || {};
+    names.forEach((n) => {
+      const rows = Array.isArray(cols[n]) ? cols[n] : [];
+      __listCache.set(n, { ts: Date.now(), rows });
+      __inflight.delete(n);
+      (batch.resolvers.get(n) || []).forEach((cb) => cb.res(rows));
+    });
+  }).catch((e) => {
+    names.forEach((n) => {
+      __inflight.delete(n);
+      (batch.resolvers.get(n) || []).forEach((cb) => cb.rej(e));
+    });
+  });
+}
 async function listCollection(name) {
   const c = __listCache.get(name);
   if (c && Date.now() - c.ts < CACHE_MS) return c.rows;
   if (__inflight.has(name)) return __inflight.get(name);
-  const p = apiCall("list", { collection: name }).then((r) => {
-    const rows = (r && r.docs) || [];
-    __listCache.set(name, { ts: Date.now(), rows });
-    __inflight.delete(name);
-    return rows;
-  }).catch((e) => { __inflight.delete(name); throw e; });
+  const p = new Promise((res, rej) => {
+    if (!__pending) {
+      __pending = { names: new Set(), resolvers: new Map(), timer: setTimeout(__flushBulk, 40) };
+    }
+    __pending.names.add(name);
+    if (!__pending.resolvers.has(name)) __pending.resolvers.set(name, []);
+    __pending.resolvers.get(name).push({ res, rej });
+  });
   __inflight.set(name, p);
   return p;
 }
+// تسخين مسبق: جلب كل الجداول الأساسية بطلب واحد فور فتح التطبيق
+["players","attendance","sports","schedules","dailyWorkouts","announcements","coaches","settings"]
+  .forEach((n) => { listCollection(n).catch(() => {}); });
 function invalidate(name) {
   __listCache.delete(name);
   try { sessionStorage.removeItem("waveLiftHomeDataCache"); } catch (e) {}
