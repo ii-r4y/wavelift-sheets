@@ -519,6 +519,10 @@ async function saveAttendance(player, status, note = "") {
   const nextEntry = { ...payload, id: `${todayKey()}_${id}` };
   if (existingIndex >= 0) todayAttendance[existingIndex] = nextEntry;
   else todayAttendance.push(nextEntry);
+  /* [instant-att-sync] */ if (Array.isArray(allAttendanceRecordsCache)) {
+    const __ci = allAttendanceRecordsCache.findIndex((e) => String(e.id) === String(nextEntry.id));
+    if (__ci >= 0) allAttendanceRecordsCache[__ci] = nextEntry; else allAttendanceRecordsCache.push(nextEntry);
+  }
   if (note) await updatePlayerNote(id, note).catch(() => {});
   return nextEntry;
 }
@@ -527,6 +531,11 @@ async function clearAttendance(player) {
   const id = playerKey(player);
   if (!id) throw new Error("PlayerID غير موجود");
   await deleteAttendanceRecord(id, todayKey());
+  /* [instant-att-sync] */ if (Array.isArray(allAttendanceRecordsCache)) {
+    const __rid = todayKey() + "_" + id;
+    const __ci = allAttendanceRecordsCache.findIndex((e) => String(e.id) === String(__rid) || (String(e.playerId) === String(id) && e.date === todayKey()));
+    if (__ci >= 0) allAttendanceRecordsCache.splice(__ci, 1);
+  }
   const existingIndex = todayAttendance.findIndex((entry) => String(entry.playerId || "") === String(id));
   if (existingIndex >= 0) todayAttendance.splice(existingIndex, 1);
 }
@@ -2876,6 +2885,10 @@ async function saveSecurityCheckIn(player) {
   const nextEntry = { ...payload, id: `${todayKey()}_${id}` };
   if (existingIndex >= 0) todayAttendance[existingIndex] = nextEntry;
   else todayAttendance.push(nextEntry);
+  /* [instant-att-sync] */ if (Array.isArray(allAttendanceRecordsCache)) {
+    const __ci = allAttendanceRecordsCache.findIndex((e) => String(e.id) === String(nextEntry.id));
+    if (__ci >= 0) allAttendanceRecordsCache[__ci] = nextEntry; else allAttendanceRecordsCache.push(nextEntry);
+  }
 }
 
 async function validatePlayer(player) {
